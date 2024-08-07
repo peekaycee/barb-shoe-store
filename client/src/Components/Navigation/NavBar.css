@@ -1,0 +1,78 @@
+.navbar {
+    position: relative;
+    width: 100%;
+    background: #480505;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar ul{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 3em;
+}
+
+.navbar  ul li{
+    position: relative;
+    list-style-type: none;
+}
+
+.navbar ul li::after{
+    position: absolute;
+    content: "";
+    bottom: 12px;
+    left: 32px;
+    height: 2px;
+    background-color: white;
+}
+
+.navbar  ul li:nth-child(1)::after {
+    width: 47px;
+    transition: width .5s ease;
+}
+
+.navbar  ul li:nth-child(2)::after {
+    width: 70px;
+    transition: width .5s ease;
+}
+
+ul li:nth-child(5)::after,
+ul li:nth-child(3)::after {
+    width: 55px;
+    transition: width .5s ease;
+}
+ul li:nth-child(4)::after {
+    width: 44px;
+    transition: width .5s ease;
+}
+
+ul li:nth-child(5):hover:after,
+ul li:nth-child(4):hover:after,
+ul li:nth-child(3):hover:after,
+ul li:nth-child(2):hover:after,
+ul li:nth-child(1):hover:after {
+    width: 0;
+}
+.navlinks {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 1em 2em;
+}
+/* ul li a.active, */
+ul li a:hover {
+    background: #700505;
+}
+
+.logo{
+    position: absolute;
+    top: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.7rem;
+    padding-left: 3em;
+    z-index: 1;
+}
