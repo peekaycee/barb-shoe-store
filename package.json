@@ -7,7 +7,7 @@
     "postinstall": "chmod +x ./node_modules/.bin/nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "dev": "npx nodemon server/server.js"
+    "dev": "nodemon server/server.js"
   },
   "keywords": [],
   "author": "",
