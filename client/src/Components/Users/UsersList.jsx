@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -8,10 +9,10 @@ function UsersList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate()
 
   const addNewUser = () => {
-      // alert('Add new user')
-      console.log('clicked!')
+      navigate('/admin/users/usersForm')
     };
 
   useEffect(() => {

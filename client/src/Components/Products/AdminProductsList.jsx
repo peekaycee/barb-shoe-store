@@ -3,11 +3,16 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './AdminProductList.css';
+import { useNavigate } from 'react-router-dom';
+import ProductForm from './ProductForm';
 
 function AdminProductsList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate()
+
+ 
 
   useEffect(() => {
     console.log('Fetching products...');
@@ -33,15 +38,20 @@ function AdminProductsList() {
     return <div>{error}</div>;
   }
 
+  const addNewProduct=()=>{
+    navigate('/admin/products/productForm')
+  }
+
   return (
     <section className='usersList'>
       <h2>Product Details</h2>
+      <button className='add-user' onClick={addNewProduct}>Add Product</button>
       <table>
         <thead>
           <tr>
             <th>Image</th>
             <th>Product</th>
-            <th>Variations</th> {/* Updated header to "Variations" */}
+            <th>Variations</th>
             <th>Price</th>
             <th>Stock</th>
             <th></th>
@@ -83,10 +93,12 @@ function AdminProductsList() {
                   <FontAwesomeIcon
                     icon={faEdit}
                     style={{ marginRight: '10px', cursor: 'pointer' }}
+                    // onClick={addNewProduct:id}
                   />
                   <FontAwesomeIcon
                     icon={faTrash}
                     style={{ cursor: 'pointer' }}
+                     // onClick={addNewProduct:id}
                   />
                 </td>
               </tr>

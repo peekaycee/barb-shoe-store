@@ -12,6 +12,8 @@ import AdminNavBar from './Components/Navigation/AdminNavBar';
 import AdminProductsList from './Components/Products/AdminProductsList';
 import Login from './Components/Login/Login';
 import PaymentGateway from './Components/PaymentGateWay/PaymentGateway';
+import ProductForm from './Components/Products/ProductForm';
+import UsersForm from './Components/Users/UsersForm';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -59,8 +61,10 @@ function AdminLayout() {
       <Routes>
         <Route path="home" element={<Home />} />
         <Route path="products" element={<AdminProductsList />} />
+        <Route path="products/productForm" element={<ProductForm />} />
         <Route path="orders" element={<OrdersList />} />
         <Route path="users" element={<UsersList />} />
+        <Route path="users/usersForm" element={<UsersForm />} />
       </Routes>
     </>
   );
