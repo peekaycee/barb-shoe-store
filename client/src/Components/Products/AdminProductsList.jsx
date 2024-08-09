@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './AdminProductList.css';
 import { useNavigate } from 'react-router-dom';
-import ProductForm from './ProductForm';
 
 function AdminProductsList() {
   const [products, setProducts] = useState([]);
