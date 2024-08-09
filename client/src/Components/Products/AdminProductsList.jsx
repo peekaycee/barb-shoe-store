@@ -34,7 +34,7 @@ function AdminProductsList() {
   }
 
   return (
-    <section className="usersList">
+    <section className='usersList'>
       <h2>Product Details</h2>
       <table>
         <thead>
@@ -48,41 +48,50 @@ function AdminProductsList() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
-            <tr key={product._id}>
-              <td>
-                <img
-                  src={`/assets/images/${product.imageUrl}`}
-                  alt={product.imageUrl}
-                  style={{ width: '100px', height: 'auto' }}
-                />
-              </td>
-              <td>
-                <p>{product.name}</p>
-              </td>
-              <td>
-                {product.variations.map((variation, index) => (
-                  <div key={index}>
-                    <p>Color: {variation.color}</p>
-                    <p>Size: {variation.size}</p>
-                  </div>
-                ))}
-              </td>
-              <td>
-                <p>${product.price}</p>
-              </td>
-              <td>
-                <p>{product.stock}</p>
-              </td>
-              <td>
-                <FontAwesomeIcon
-                  icon={faEdit}
-                  style={{ marginRight: '10px', cursor: 'pointer' }}
-                />
-                <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
-              </td>
-            </tr>
-          ))}
+          {products.map((product) => {
+            const formattedPrice = isNaN(product.price)
+              ? '-'
+              : `$${product.price.toFixed(2)}`;
+
+            return (
+              <tr key={product._id}>
+                <td>
+                  <img
+                    src={`/assets/images/${product.imageUrl}`}
+                    alt={product.imageUrl}
+                    style={{ width: '100px', height: 'auto' }}
+                  />
+                </td>
+                <td>
+                  <p>{product.name}</p>
+                </td>
+                <td>
+                  {product.variations.map((variation, index) => (
+                    <div key={index}>
+                      <p>Color: {variation.color}</p>
+                      <p>Size: {variation.size}</p>
+                    </div>
+                  ))}
+                </td>
+                <td>
+                  <p>{formattedPrice}</p> 
+                </td>
+                <td>
+                  <p>{product.stock}</p>
+                </td>
+                <td>
+                  <FontAwesomeIcon
+                    icon={faEdit}
+                    style={{ marginRight: '10px', cursor: 'pointer' }}
+                  />
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    style={{ cursor: 'pointer' }}
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </section>
