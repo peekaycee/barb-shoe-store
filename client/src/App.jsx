@@ -14,6 +14,8 @@ import Login from './Components/Login/Login';
 import PaymentGateway from './Components/PaymentGateWay/PaymentGateway';
 import ProductForm from './Components/Products/ProductForm';
 import UsersForm from './Components/Users/UsersForm';
+import EditUserForm from './Components/Users/EditUserForm';
+import EditProductForm from './Components/Products/EditProductForm';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -45,10 +47,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login onLogout={handleLogout} />} />
-        <Route path="/*" element={<NotFoundPage />} />
-        <Route path="/admin/*" element={<AdminLayout />} />
-        <Route path="/user/*" element={<UserLayout />} />
+        <Route path='/' element={<Login onLogout={handleLogout} />} />
+        <Route path='/*' element={<NotFoundPage />} />
+        <Route path='/admin/*' element={<AdminLayout />} />
+        <Route path='/user/*' element={<UserLayout />} />
       </Routes>
     </>
   );
@@ -59,12 +61,14 @@ function AdminLayout() {
     <>
       <AdminNavBar />
       <Routes>
-        <Route path="home" element={<Home />} />
-        <Route path="products" element={<AdminProductsList />} />
-        <Route path="products/productForm" element={<ProductForm />} />
-        <Route path="orders" element={<OrdersList />} />
-        <Route path="users" element={<UsersList />} />
-        <Route path="users/usersForm" element={<UsersForm />} />
+        <Route path='home' element={<Home />} />
+        <Route path='products' element={<AdminProductsList />} />
+        <Route path='products/productForm' element={<ProductForm />} />
+        <Route path='products/edit/:id' element={<EditProductForm />} />
+        <Route path='orders' element={<OrdersList />} />
+        <Route path='users' element={<UsersList />} />
+        <Route path='users/usersForm' element={<UsersForm />} />
+        <Route path='users/edit/:id' element={<EditUserForm />} />
       </Routes>
     </>
   );
@@ -75,9 +79,9 @@ function UserLayout() {
     <>
       <UserNavBar />
       <Routes>
-        <Route path="home" element={<Home />} />
-        <Route path="products" element={<ProductsList />} />
-        <Route path="paymentGateway" element={<PaymentGateway />} />
+        <Route path='home' element={<Home />} />
+        <Route path='products' element={<ProductsList />} />
+        <Route path='paymentGateway' element={<PaymentGateway />} />
       </Routes>
     </>
   );

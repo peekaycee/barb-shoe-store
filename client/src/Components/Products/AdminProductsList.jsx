@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-import './AdminProductList.css';
 import { useNavigate } from 'react-router-dom';
+import './AdminProductList.css';
 
 function AdminProductsList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate()
+  const [notifications, setNotifications] = useState([]);
+  const navigate = useNavigate();
 
- 
+  const addNewProduct = () => {
+    navigate('/admin/products/productForm');
+  };
 
   useEffect(() => {
     console.log('Fetching products...');
@@ -21,6 +24,19 @@ function AdminProductsList() {
         console.log('Products fetched:', response.data);
         setProducts(response.data);
         setLoading(false);
+
+        // Check for out-of-stock products
+        const outOfStockProducts = response.data.filter(
+          (product) => product.stock === 0
+        );
+        if (outOfStockProducts.length > 0) {
+          setNotifications(
+            outOfStockProducts.map(
+              (product) =>
+                `The ${product.variations[0]?.color}  "${product.name}" of size ${product.variations[0]?.size} is out of stock!`
+            )
+          );
+        }
       })
       .catch((error) => {
         console.error('Error fetching products:', error);
@@ -28,6 +44,24 @@ function AdminProductsList() {
         setLoading(false);
       });
   }, []);
+
+  const deleteProduct = async (id) => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete this product?'
+    );
+    if (!confirmed) return;
+
+    try {
+      await axios.delete(`/products/${id}`);
+      setProducts(products.filter((product) => product._id !== id));
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  };
+
+  const editProduct = (id) => {
+    navigate(`/admin/products/edit/${id}`);
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -37,14 +71,25 @@ function AdminProductsList() {
     return <div>{error}</div>;
   }
 
-  const addNewProduct=()=>{
-    navigate('/admin/products/productForm')
-  }
-
   return (
     <section className='usersList'>
       <h2>Product Details</h2>
-      <button className='add-user' onClick={addNewProduct}>Add Product</button>
+      <button className='add-user' onClick={addNewProduct}>
+        Add Product
+      </button>
+
+      {/* Display notifications when out of stock */}
+      {notifications.length > 0 && (
+        <div className='notifications'>
+          <h3>Notifications</h3>
+          <ul>
+            {notifications.map((notification, index) => (
+              <li key={index}>{notification}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <table>
         <thead>
           <tr>
@@ -83,7 +128,7 @@ function AdminProductsList() {
                   ))}
                 </td>
                 <td>
-                  <p>{formattedPrice}</p> 
+                  <p>{formattedPrice}</p>
                 </td>
                 <td>
                   <p>{product.stock}</p>
@@ -92,12 +137,12 @@ function AdminProductsList() {
                   <FontAwesomeIcon
                     icon={faEdit}
                     style={{ marginRight: '10px', cursor: 'pointer' }}
-                    // onClick={addNewProduct:id}
+                    onClick={() => editProduct(product._id)}
                   />
                   <FontAwesomeIcon
                     icon={faTrash}
                     style={{ cursor: 'pointer' }}
-                     // onClick={addNewProduct:id}
+                    onClick={() => deleteProduct(product._id)}
                   />
                 </td>
               </tr>

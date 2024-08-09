@@ -1,6 +1,7 @@
 import './ProductForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import axios from 'axios';
 
 const ProductForm = () => {
   const [image, setImage] = useState('');
@@ -11,13 +12,32 @@ const ProductForm = () => {
   const [stock, setStock] = useState('');
   const navigate = useNavigate();
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    // add function to submit form values to database here...........
 
-    console.log(image, price, stock);
+    const newProduct = {
+      imageUrl: image,
+      name: product,
+      variations: {
+        size,
+        color,
+      },
+      price,
+      stock,
+    };
 
-    navigate('/admin/products');
+    try {
+      const response = await axios.post('/products', newProduct);
+      console.log('Product created:', response.data);
+
+      navigate('/admin/products');
+    } catch (error) {
+      if (error.response) {
+        console.error('Error creating product:', error.response.data.message);
+      } else {
+        console.error('Error creating product:', error.message);
+      }
+    }
   };
 
   return (

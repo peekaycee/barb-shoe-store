@@ -35,3 +35,7 @@
     padding: 7px 40px;
     border-radius: 5px;
 }
+
+.productForm button:hover {
+    background-color: #e7e7e7;
+}

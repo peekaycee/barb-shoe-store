@@ -1,39 +1,50 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './UsersForm.css';
 
-const UsersForm = () => {
+const EditUserForm = () => {
+  const { id } = useParams();
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Fetch the user data by ID
+    axios.get(`/users/${id}`)
+      .then(response => {
+        const user = response.data;
+        setUsername(user.username);
+        setEmail(user.email);
+        setPassword(user.password);
+      })
+      .catch(error => {
+        console.error('Error fetching user:', error);
+      });
+  }, [id]);
+
   const submitForm = async (e) => {
     e.preventDefault();
-    const newUser = {
-      username: username, 
+    const updatedUser = {
+      username: username,
       email: email,
       password: password
     };
-  
+
     try {
-      const response = await axios.post('/users', newUser);
-      console.log('User created:', response.data);
-  
+      console.log('Submitting updated user data:', updatedUser);
+      const response = await axios.put(`/users/${id}`, updatedUser); // Use PUT for consistency
+      console.log('User updated:', response.data);
       navigate('/admin/users');
     } catch (error) {
-      if (error.response) {
-        console.error('Error creating user:', error.response.data.message);
-      } else {
-        console.error('Error creating user:', error.message);
-      }
+      console.error('Error updating user:', error);
     }
   };
 
   return (
     <section className='userForm'>
-      <h2>Add Users Details</h2>
+      <h2>Edit User Details</h2>
       <form onSubmit={submitForm}>
         <div>
           <label htmlFor='username'>Username: </label>
@@ -69,11 +80,11 @@ const UsersForm = () => {
           />
         </div>
         <button type='submit'>
-          Add User
+          Save Changes
         </button>
       </form>
     </section>
   );
 };
 
-export default UsersForm;
+export default EditUserForm;
