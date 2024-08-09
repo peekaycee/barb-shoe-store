@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './AdminProductList.css';
 
 function AdminProductsList() {
@@ -32,29 +34,58 @@ function AdminProductsList() {
   }
 
   return (
-    <div>
-      <h1>Products</h1>
-      <ul>
-        {products.map((product) => (
-          <li key={product._id}>
-            <div>
-              <p>{product.imageUrl} </p>
-              <p>{product.name} </p>
-              <p>${product.price} </p>
-              <p>{product.stock} </p>
-            </div>
-            <div>
-              {product.variations.map((variation, index) => (
-                <div key={index}>
-                  <p>Color: {variation.color}</p>
-                  <p>Size: {variation.size}</p>
-                </div>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section className="usersList">
+      <h2>Products Details</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Variations</th> {/* Updated header to "Variations" */}
+            <th>Price</th>
+            <th>Stock</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product._id}>
+              <td>
+                <img
+                  src={`/assets/images/${product.imageUrl}`}
+                  alt={product.imageUrl}
+                  style={{ width: '100px', height: 'auto' }}
+                />
+              </td>
+              <td>
+                <p>{product.name}</p>
+              </td>
+              <td>
+                {product.variations.map((variation, index) => (
+                  <div key={index}>
+                    <p>Color: {variation.color}</p>
+                    <p>Size: {variation.size}</p>
+                  </div>
+                ))}
+              </td>
+              <td>
+                <p>{product.price}</p>
+              </td>
+              <td>
+                <p>{product.stock}</p>
+              </td>
+              <td>
+                <FontAwesomeIcon
+                  icon={faEdit}
+                  style={{ marginRight: '10px', cursor: 'pointer' }}
+                />
+                <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
   );
 }
 

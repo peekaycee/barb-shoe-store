@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import './UsersList.css'
 
 function UsersList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const addNewUser = () => {
+      // alert('Add new user')
+      console.log('clicked!')
+    };
 
   useEffect(() => {
     console.log('Fetching users...');
@@ -30,18 +38,33 @@ function UsersList() {
   }
 
   return (
-    <div>
-      <h2>Users</h2>
-      <ul>
-        {users.map(user => (
-          <li key={user._id}>
-            <p>{user.username}</p>
-            <p>{user.email}</p>
-            <p>{user.password}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section className='usersList'>
+      <h2>Users Details</h2>
+      <button className='add-user' onClick={addNewUser}>Add New User</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th></th> 
+          </tr>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user._id}>
+              <td><p>{user.username}</p></td>
+              <td><p>{user.email}</p></td>
+              <td><p>{user.password}</p></td>
+              <td>
+                <FontAwesomeIcon icon={faEdit} style={{ marginRight: '10px', cursor: 'pointer' }} />
+                <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
   );
 }
 

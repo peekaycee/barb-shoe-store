@@ -1,0 +1,97 @@
+/* Container styling */
+.usersList {
+    padding: 2em 5em;
+}
+
+.usersList h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2rem;
+    color: #480505;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+thead th {
+    background-color: #480505;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    font-size: 16px;
+}
+
+/* Table Rows */
+tbody tr {
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+td {
+    padding: 12px 15px;
+}
+
+/* Button styling */
+button.add-user {
+    background-color: #480505;
+    width: fit-content;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.25s;
+}
+
+button.add-user:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+/* Icons Styling */
+td .fa-icon {
+    font-size: 18px;
+    color: #480505;
+    cursor: pointer;
+}
+
+td .fa-icon:hover {
+    transform: scale(1.2);
+}
+
+td .fa-icon:first-child {
+    margin-right: 15px;
+}
+
+/* Status Column Styling */
+.status-not-delivered,
+.status-pending,
+.status-delivered {
+    width: fit-content;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.status-delivered {
+    background-color: lightgreen;
+}
+
+.status-pending {
+    background-color: tomato;
+}
+
+.status-not-delivered {
+    background-color: lightcoral;
+}

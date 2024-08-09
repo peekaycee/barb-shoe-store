@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import './OrdersList.css';
 
 function OrdersList() {
   const [orders, setOrders] = useState([]);
@@ -30,16 +33,56 @@ function OrdersList() {
   }
 
   return (
-    <div>
-      <h2>Orders</h2>
-      <ul>
-        {orders.map(order => (
-          <li key={order._id}>
-            Order ID: {order._id}, Total: ${order.total}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section className="usersList">
+      <h2>Orders Details</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Product</th>
+            <th>Variations</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th></th> 
+          </tr>
+        </thead>
+        <tbody>
+          {orders.map(order => (
+            <tr key={order._id}>
+              <td>
+                <img 
+                  src={`/assets/images/${order.imageUrl}`} 
+                  alt={order.product} 
+                  style={{ width: '100px', height: 'auto' }} 
+                />
+              </td>
+              <td><p>{order.product}</p></td>
+              <td>
+                <p>Color: {order.color}</p>
+                <p>Size: {order.size}</p>
+              </td>
+              <td><p>{order.quantity}</p></td>
+              <td><p>{order.total}</p></td>
+              <td>
+                <p 
+                  className={
+                    order.status === 'Delivered' ? 'status-delivered' :
+                    order.status === 'Pending' ? 'status-pending' :
+                    'status-not-delivered'
+                  }
+                >
+                  {order.status}
+                </p>
+              </td>
+              <td>
+                <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </section>
   );
 }
 

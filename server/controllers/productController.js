@@ -1,7 +1,7 @@
 const Product = require('../models/Product');
 
 // Get all products
-exports.getAllProducts = async (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
     const products = await Product.find();
     res.json(products);
@@ -11,7 +11,7 @@ exports.getAllProducts = async (req, res) => {
 };
 
 // Create a new product
-exports.createProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   const product = new Product(req.body);
   try {
     const newProduct = await product.save();
@@ -22,7 +22,7 @@ exports.createProduct = async (req, res) => {
 };
 
 // Get a single product by ID
-exports.getProductById = async (req, res) => {
+const getProductById = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
@@ -33,9 +33,11 @@ exports.getProductById = async (req, res) => {
 };
 
 // Update a product by ID
-exports.updateProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!product) return res.status(404).json({ message: 'Product not found' });
     res.json(product);
   } catch (err) {
@@ -44,7 +46,7 @@ exports.updateProduct = async (req, res) => {
 };
 
 // Delete a product by ID
-exports.deleteProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
     if (!product) return res.status(404).json({ message: 'Product not found' });
@@ -52,4 +54,12 @@ exports.deleteProduct = async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
+};
+
+module.exports = {
+  getAllProducts,
+  createProduct,
+  getProductById,
+  updateProduct,
+  deleteProduct,
 };
