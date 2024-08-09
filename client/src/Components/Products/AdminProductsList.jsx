@@ -35,7 +35,7 @@ function AdminProductsList() {
 
   return (
     <section className="usersList">
-      <h2>Products Details</h2>
+      <h2>Product Details</h2>
       <table>
         <thead>
           <tr>
@@ -69,7 +69,7 @@ function AdminProductsList() {
                 ))}
               </td>
               <td>
-                <p>{product.price}</p>
+                <p>${product.price}</p>
               </td>
               <td>
                 <p>{product.stock}</p>

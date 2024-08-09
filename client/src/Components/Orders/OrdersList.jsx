@@ -41,6 +41,7 @@ function OrdersList() {
             <th>Image</th>
             <th>Product</th>
             <th>Variations</th>
+            <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
             <th>Status</th>
@@ -48,38 +49,44 @@ function OrdersList() {
           </tr>
         </thead>
         <tbody>
-          {orders.map(order => (
-            <tr key={order._id}>
-              <td>
-                <img 
-                  src={`/assets/images/${order.imageUrl}`} 
-                  alt={order.product} 
-                  style={{ width: '100px', height: 'auto' }} 
-                />
-              </td>
-              <td><p>{order.product}</p></td>
-              <td>
-                <p>Color: {order.color}</p>
-                <p>Size: {order.size}</p>
-              </td>
-              <td><p>{order.quantity}</p></td>
-              <td><p>{order.total}</p></td>
-              <td>
-                <p 
-                  className={
-                    order.status === 'Delivered' ? 'status-delivered' :
-                    order.status === 'Pending' ? 'status-pending' :
-                    'status-not-delivered'
-                  }
-                >
-                  {order.status}
-                </p>
-              </td>
-              <td>
-                <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
-              </td>
-            </tr>
-          ))}
+          {orders.map(order => {
+            const total = order.price * order.quantity;
+            const formattedTotal = isNaN(total) ? '-' : `$${total.toFixed(2)}`;
+
+            return (
+              <tr key={order._id}>
+                <td>
+                  <img 
+                    src={`/assets/images/${order.imageUrl}`} 
+                    alt={order.product} 
+                    style={{ width: '100px', height: 'auto' }} 
+                  />
+                </td>
+                <td><p>{order.product}</p></td>
+                <td>
+                  <p>Color: {order.color}</p>
+                  <p>Size: {order.size}</p>
+                </td>
+                <td><p>${order.price}</p></td>
+                <td><p>{order.quantity}</p></td>
+                <td><p>{formattedTotal}</p></td> {/* Conditionally rendered total */}
+                <td>
+                  <p 
+                    className={
+                      order.status === 'Delivered' ? 'status-delivered' :
+                      order.status === 'Pending' ? 'status-pending' :
+                      'status-not-delivered'
+                    }
+                  >
+                    {order.status}
+                  </p>
+                </td>
+                <td>
+                  <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </section>
