@@ -10,16 +10,13 @@ function OrdersList() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log('Fetching orders...');
     axios
       .get('/orders')
       .then((response) => {
-        console.log('Orders fetched:', response.data);
         setOrders(response.data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error('Error fetching orders:', error);
+      .catch(() => {
         setError('Error fetching orders');
         setLoading(false);
       });
@@ -39,16 +36,11 @@ function OrdersList() {
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>{error}</div>;
-  }
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
 
   return (
-    <section className='usersList'>
+    <section className='ordersList'>
       <h2>Orders Details</h2>
       <table>
         <thead>
@@ -66,20 +58,16 @@ function OrdersList() {
         <tbody>
           {orders.map((order) => {
             const total = order.price * order.quantity;
-            const formattedTotal = isNaN(total) ? '-' : `$${total.toFixed(2)}`;
-
             return (
               <tr key={order._id}>
                 <td>
                   <img
                     src={`/assets/images/${order.imageUrl}`}
-                    alt={order.product}
+                    alt={order.name}
                     style={{ width: '100px', height: 'auto' }}
                   />
                 </td>
-                <td>
-                  <p>{order.name}</p>
-                </td>
+                <td>{order.name}</td>
                 <td>
                   {order.variations.map((variation, index) => (
                     <div key={index}>
@@ -88,16 +76,9 @@ function OrdersList() {
                     </div>
                   ))}
                 </td>
-                <td>
-                  <p>${order.price}</p>
-                </td>
-                <td>
-                  <p>{order.quantity}</p>
-                </td>
-                <td>
-                  <p>{formattedTotal}</p>
-                </td>{' '}
-                {/* Conditionally rendered total */}
+                <td>${order.price}</td>
+                <td>{order.quantity}</td>
+                <td>${total.toFixed(2)}</td>
                 <td>
                   <p
                     className={

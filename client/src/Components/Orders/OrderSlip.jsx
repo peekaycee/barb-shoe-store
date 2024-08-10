@@ -1,26 +1,26 @@
 /* eslint-disable react/prop-types */
-import { useReducer, useState, useEffect } from 'react';
+import { useReducer, useState, useEffect, useCallback } from 'react';
 import './OrderSlip.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const OrderSlip = ({ product, onSubmit, onClick }) => {
-  const initialState = { count: 1 };
+const initialState = { count: 1 };
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: Math.max(1, state.count - 1) };
+    case 'reset':
+      return initialState;
+    default:
+      return state;
+  }
+};
+
+const OrderSlip = ({ product, userId, onSubmit, onClick }) => {
   const navigate = useNavigate();
-
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case 'increment':
-        return { ...state, count: state.count + 1 };
-      case 'decrement':
-        return state.count > 1 ? { ...state, count: state.count - 1 } : state;
-      case 'reset':
-        return initialState;
-      default:
-        return state;
-    }
-  };
-
   const [state, dispatch] = useReducer(reducer, initialState);
   const [size, setSize] = useState('');
   const [color, setColor] = useState('');
@@ -28,52 +28,72 @@ const OrderSlip = ({ product, onSubmit, onClick }) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (product && product.variations && product.variations.length > 0) {
-      setSize(product.variations[0].size);
-      setColor(product.variations[0].color);
-    } else {
-      setSize('');
-      setColor('');
-    }
-    if (product && product.name) {
-      setBrandName(product.name);
-    } else {
-      setBrandName('');
+    if (product) {
+      const { variations, name } = product;
+      if (variations && variations.length > 0) {
+        setSize(variations[0].size);
+        setColor(variations[0].color);
+      } else {
+        setSize('');
+        setColor('');
+      }
+      setBrandName(name || '');
     }
   }, [product]);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+
     if (state.count > product.stock) {
       setError(`Cannot purchase more than ${product.stock} items`);
       return;
     }
+
     const updatedStock = product.stock - state.count;
+    const totalPrice = (product.price * state.count).toFixed(2);
 
-    // Update the stock in the backend
-    axios.put(`/products/${product._id}`, { stock: updatedStock })
-      .then(response => {
-        console.log('Stock updated:', response.data);
-        console.log('Quantity:', state.count);
-        console.log('Total:', totalPrice);
-        dispatch({ type: 'reset' });
-        setSize('');
-        setColor('');
-        setBrandName('');
-        onSubmit();
-      })
-      .catch(error => {
-        console.error('Error updating stock:', error);
-      });
-  };
+    try {
+      // Update the stock in the backend
+      await axios.put(`/products/${product._id}`, { stock: updatedStock });
 
-  const makePayment = () => {
-    handleSubmit();
-    if (state.count <= product.stock) {
+      const newOrder = {
+        userId: userId,  // Use the dynamic userId here
+        productId: product._id,
+        imageUrl: product.imageUrl,
+        name: product.name,
+        price: product.price,
+        quantity: state.count,
+        status: 'Pending',
+        variations: {
+          size: product.variations[0]?.size,
+          color: product.variations[0]?.color,
+        },
+        total: totalPrice,
+      };
+
+      await axios.post('/orders', newOrder);
+
+      console.log('Order created successfully.');
+      console.log(updatedStock);
+
+      dispatch({ type: 'reset' });
+      setSize('');
+      setColor('');
+      setBrandName('');
+      onSubmit();
+
       navigate('/user/paymentGateway');
+    } catch (error) {
+      if (error.response) {
+        console.error('Error creating order:', error.response.data.message);
+      } else {
+        console.error('Error creating order:', error.message);
+      }
     }
-  };
+  }, [state.count, product, userId, onSubmit, navigate]);
 
-  const handleCloseOrderSlip = () => {
+  const handleCloseOrderSlip = (e) => {
+    e.preventDefault();
     onClick();
   };
 
@@ -94,12 +114,15 @@ const OrderSlip = ({ product, onSubmit, onClick }) => {
         <div className='itemImage'>
           <p className='price'>Price : ${product.price}</p>
           {product.imageUrl ? (
-            <img src={product.imageUrl} alt={product.name} />
+            <img
+              src={`/assets/images/${product.imageUrl}`}
+              alt={product.imageUrl}
+            />
           ) : (
             <p>No image available</p>
           )}
         </div>
-        <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+        <form onSubmit={handleSubmit}>
           <div className='brand-name'>
             <label htmlFor='brand-name'>Product Name: </label>
             <input
@@ -147,7 +170,7 @@ const OrderSlip = ({ product, onSubmit, onClick }) => {
           </div>
           <p>Total: ${totalPrice}</p>
           {error && <p className='error'>{error}</p>}
-          <button type='submit' className='paymentBtn' onClick={makePayment}>
+          <button type='submit' className='paymentBtn'>
             Make Payment
           </button>
         </form>

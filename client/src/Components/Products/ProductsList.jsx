@@ -40,8 +40,8 @@ function ProductsList() {
 
   const handleOrderSubmit = () => {
     // Update the product stock in the local state after successful order
-    const updatedProducts = products.map(p => 
-      p._id === selectedProduct._id 
+    const updatedProducts = products.map((p) =>
+      p._id === selectedProduct._id
         ? { ...p, stock: p.stock - selectedProduct.stock }
         : p
     );
@@ -68,7 +68,11 @@ function ProductsList() {
               <div className='product-card'>
                 <div className='card-image'>
                   {product.imageUrl ? (
-                    <img src={product.imageUrl} alt='The product image' />
+                    <img
+                      src={`/assets/images/${product.imageUrl}`}
+                      alt={product.imageUrl}
+                      style={{ width: '100%', height: '100%', borderRadius: '10px 10px 0 0' }}
+                    />
                   ) : (
                     'thumbnail'
                   )}
@@ -108,8 +112,7 @@ function ProductsList() {
                   </div>
                   <button
                     className='order-button'
-                    onClick={() => handleOrderClick(product)}
-                  >
+                    onClick={() => handleOrderClick(product)}>
                     Order
                   </button>
                 </div>
@@ -119,9 +122,9 @@ function ProductsList() {
         </ul>
       </div>
       {orderSlipVisible && (
-        <OrderSlip 
-          product={selectedProduct} 
-          onSubmit={handleOrderSubmit} 
+        <OrderSlip
+          product={selectedProduct}
+          onSubmit={handleOrderSubmit}
           onClick={handleCloseOrderSlip}
         />
       )}
