@@ -64,13 +64,17 @@
   justify-content: center;
 }
 
-.register {
+/* .register {
   display: none;
-}
+} */
 
 /* .login-credentials{
     display: none;
 } */
+
+form#hide{
+  display: none;
+}
 
 .register h2,
 .login-credentials h2 {
@@ -98,6 +102,12 @@
 .input-fields input::placeholder {
   color: #777;
   font-weight: 500;
+}
+
+.login-link{
+  color: #333;
+  margin-top: 5px;
+  cursor: pointer;
 }
 
 .input-fields .buttons {

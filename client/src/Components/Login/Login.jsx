@@ -3,8 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [initialState, setInitialState] = useState({});
   const [errorMessage, setErrorMessage] = useState('');
+  const [hideLoginForm, setHideLoginForm] = useState('hide');
+  const [hideRegisterForm, setHideRegisterForm] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,7 +17,22 @@ function Login() {
     window.history.pushState(null, null, window.location.href);
     window.history.pushState(null, null, window.location.href);
     window.history.go(-2);
+
+    // Store the initial state
+    setInitialState({
+      username: '',
+      email: '',
+      password: ''
+    });
   }, []);
+
+  const hasFormChanged = () => {
+    return (
+      username !== initialState.username || 
+      email !== initialState.email || 
+      password !== initialState.password
+    );
+  };
 
   const handleAdminLogin = (e) => {
     e.preventDefault();
@@ -32,6 +52,42 @@ function Login() {
     } else {
       setErrorMessage('Invalid user password');
     }
+  };
+
+  const submitLoginForm = (e) => {
+    e.preventDefault();
+    setHideLoginForm('');
+  };
+
+  const submitRegisterForm = (e) => {
+    e.preventDefault();
+
+    if (!hasFormChanged()) {
+      setErrorMessage('No changes made to the form.');
+      return;
+    }
+
+    const userDetail = {
+      username,
+      email,
+      password,
+    };
+    console.log(userDetail);
+
+    // Reset the form to initial state
+    setUsername('');
+    setEmail('');
+    setPassword('');
+    setInitialState({ username: '', email: '', password: '' });
+    setErrorMessage(''); // Clear any error messages
+    setHideRegisterForm('hide');
+    setHideLoginForm('');
+  };
+
+  const switchToLoginForm = () => {
+    setHideRegisterForm('hide');
+    setHideLoginForm('');
+    setErrorMessage(''); // Clear any error messages when switching to the login form
   };
 
   return (
@@ -54,15 +110,15 @@ function Login() {
           </div>
         </div>
 
-        <form className='register'>
+        <form className='register' id={hideRegisterForm} onSubmit={submitRegisterForm}>
           <h2>Register</h2>
           <div className='input-fields'>
             <div className='username'>
               <input
                 type='text'
                 id='username'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder='Enter username'
                 autoComplete='on'
               />
@@ -71,8 +127,8 @@ function Login() {
               <input
                 type='email'
                 id='email'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder='Enter email'
                 autoComplete='on'
               />
@@ -91,9 +147,13 @@ function Login() {
           <button type='submit' className='submitBtn'>
             Submit
           </button>
+          {errorMessage && hideRegisterForm === '' && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          <p className='login-link'>
+            Have an account? <em onClick={switchToLoginForm}>login...</em>
+          </p>
         </form>
 
-        <form className='login-credentials'>
+        <form className='login-credentials' id={hideLoginForm} onSubmit={submitLoginForm}>
           <h2>Login</h2>
           <div className='input-fields'>
             <div>
@@ -109,7 +169,7 @@ function Login() {
               <button onClick={handleUserLogin}>Login as User</button>
             </div>
             <div className='error'>
-              {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+              {errorMessage && hideLoginForm === '' && <p style={{ color: 'red' }}>{errorMessage}</p>}
             </div>
           </div>
         </form>
