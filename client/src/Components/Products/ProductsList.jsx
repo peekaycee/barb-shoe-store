@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import './ProductsList.css';
 import OrderSlip from '../Orders/OrderSlip';
 
@@ -74,8 +73,7 @@ function ProductsList() {
       <div className='products-container' id={blur}>
         <h1>Products</h1>
         <span className='refresh-productlist' onClick={reloadPage}>
-                <FontAwesomeIcon
-                  icon={faSync}
+                <RefreshIcon
                   style={{ marginLeft: '10px', cursor: 'pointer' }}
                 />
               </span>

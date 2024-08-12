@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faCheck, faSyncAlt, faSync } from '@fortawesome/free-solid-svg-icons';
+import DeleteIcon from '@mui/icons-material/Delete';
+import CheckIcon from '@mui/icons-material/Check';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import RefreshIcon from '@mui/icons-material/Refresh';
+
 import './OrdersList.css';
 
 function OrdersList() {
@@ -79,7 +82,7 @@ function OrdersList() {
             <th>Status</th>
             <th></th>
             <th className='refresh' onClick={reloadPage}>
-              <FontAwesomeIcon icon={faSync} style={{ marginLeft: '10px', cursor: 'pointer' }} />
+            <RefreshIcon style={{ marginLeft: '10px', cursor: 'pointer' }} />
             </th>
           </tr>
         </thead>
@@ -123,20 +126,16 @@ function OrdersList() {
                 <td>
                   {
                     order.status === 'Delivered'
-                    ? <FontAwesomeIcon icon={faCheck} style={{ cursor: 'pointer' }}/>
-                    : <FontAwesomeIcon
-                        icon={faSyncAlt}
-                        style={{ marginRight: '10px', cursor: 'pointer' }}
-                        onClick={() => confirmOrder(order._id)}
-                      />
+                    ? <DoneAllIcon style={{ cursor: 'pointer', color: 'lightgreen' }} />
+                    : <CheckIcon style={{ marginRight: '10px', cursor: 'pointer', color: 'red' }}
+                    onClick={() => confirmOrder(order._id)}/> 
                   }
                 </td>
                 <td>
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    style={{ cursor: 'pointer' }}
-                    onClick={() => deleteOrder(order._id)}
-                  />
+                <DeleteIcon 
+                style={{ cursor: 'pointer', color: 'red' }}
+                onClick={() => deleteOrder(order._id)}
+                />
                 </td>
               </tr>
             );

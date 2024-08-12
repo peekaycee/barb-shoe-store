@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faSync } from '@fortawesome/free-solid-svg-icons';
+import DeleteIcon from '@mui/icons-material/Delete';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import EditIcon from '@mui/icons-material/Edit';
 import { useNavigate } from 'react-router-dom';
 import './AdminProductList.css';
 
@@ -107,8 +108,7 @@ function AdminProductsList() {
             <th></th>
             <th>
               <span className='refresh' onClick={reloadPage}>
-                <FontAwesomeIcon
-                  icon={faSync}
+                <RefreshIcon
                   style={{ marginLeft: '10px', cursor: 'pointer' }}
                 />
               </span>
@@ -148,16 +148,14 @@ function AdminProductsList() {
                   <p>{product.stock}</p>
                 </td>
                 <td>
-                  <FontAwesomeIcon
-                    icon={faEdit}
-                    style={{ marginRight: '10px', cursor: 'pointer' }}
+                  <EditIcon
+                    style={{ marginRight: '10px', cursor: 'pointer', color: '#480505'}}
                     onClick={() => editProduct(product._id)}
                   />
                 </td>
                 <td>
-                  <FontAwesomeIcon
-                    icon={faTrash}
-                    style={{ cursor: 'pointer' }}
+                  <DeleteIcon
+                    style={{ cursor: 'pointer', color: 'red' }}
                     onClick={() => deleteProduct(product._id)}
                   />
                 </td>

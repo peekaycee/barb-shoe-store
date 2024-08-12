@@ -93,9 +93,10 @@ td .fa-icon:first-child {
     color: #e7e7e7;
 }
 
-.status-not-delivered {
+/* .status-not-delivered {
     background-color: lightcoral;
-}
+} */
+ 
 .refresh {
     cursor: pointer;
 }

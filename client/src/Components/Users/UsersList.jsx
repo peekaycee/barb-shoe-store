@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash, faSync } from '@fortawesome/free-solid-svg-icons';
+import DeleteIcon from '@mui/icons-material/Delete';
+import RefreshIcon from '@mui/icons-material/Refresh';
+import EditIcon from '@mui/icons-material/Edit';
 import './UsersList.css';
 
 function UsersList() {
@@ -77,7 +78,7 @@ function UsersList() {
             <th>Password</th>
             <th></th>
             <th className='refresh' onClick={reloadPage}>
-              <FontAwesomeIcon icon={faSync} style={{ marginLeft: '10px', cursor: 'pointer' }} />
+              <RefreshIcon style={{ marginLeft: '10px', cursor: 'pointer' }} />
             </th>
           </tr>
         </thead>
@@ -94,16 +95,14 @@ function UsersList() {
                 <p>{user.password}</p>
               </td>
               <td>
-                <FontAwesomeIcon
-                  icon={faEdit}
-                  style={{ marginRight: '10px', cursor: 'pointer' }}
+                <EditIcon
+                  style={{ marginRight: '10px', cursor: 'pointer', color: '#480505' }}
                   onClick={() => editUser(user._id)}
                 />
                 </td>
                 <td>
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  style={{ cursor: 'pointer' }}
+                <DeleteIcon
+                  style={{ cursor: 'pointer', color: 'red'}}
                   onClick={() => deleteUser(user._id)}
                 />
               </td>
