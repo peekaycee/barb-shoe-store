@@ -16,6 +16,7 @@ import ProductForm from './Components/Products/ProductForm';
 import UsersForm from './Components/Users/UsersForm';
 import EditUserForm from './Components/Users/EditUserForm';
 import EditProductForm from './Components/Products/EditProductForm';
+import Footer from './Components/Footer/Footer';
 
 // axios.defaults.baseURL = 'http://localhost:5000/api';
 axios.defaults.baseURL = 'https://barb-shoe-store-9ik8.onrender.com/api';
@@ -61,6 +62,7 @@ function App() {
         <Route path='/admin/*' element={<AdminLayout />} />
         <Route path='/user/*' element={<UserLayout />} />
       </Routes>
+      <Footer/>
     </>
   );
 }
