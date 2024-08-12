@@ -1,9 +1,9 @@
 /* Container styling */
-.usersList {
+.ordersList {
     padding: 2em 5em;
 }
 
-.usersList h2 {
+.ordersList h2 {
     margin-bottom: 20px;
     text-align: center;
     font-weight: bold;
@@ -89,9 +89,13 @@ td .fa-icon:first-child {
 }
 
 .status-pending {
-    background-color: tomato;
+    background-color: red;
+    color: #e7e7e7;
 }
 
 .status-not-delivered {
     background-color: lightcoral;
+}
+.refresh {
+    cursor: pointer;
 }

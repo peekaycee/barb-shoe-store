@@ -11,7 +11,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    padding: 0 3em;
+    padding-right: 5em;
 }
 
 .navbar  ul li{

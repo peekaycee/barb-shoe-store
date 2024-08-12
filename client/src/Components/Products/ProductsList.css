@@ -68,3 +68,11 @@ ul.productlists li {
   background: rgb(95, 93, 93);
   color: white;
 }
+
+.refresh-productlist{
+  position: absolute;
+  top: 18px;
+  right: 35px;
+  color: #e7e7e7;
+  cursor: pointer;
+}

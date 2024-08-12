@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faSync } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import './AdminProductList.css';
 
@@ -16,16 +16,14 @@ function AdminProductsList() {
     navigate('/admin/products/productForm');
   };
 
-  useEffect(() => {
-    console.log('Fetching products...');
+  const fetchProducts = () => {
+    setLoading(true);
     axios
       .get('/products')
       .then((response) => {
-        console.log('Products fetched:', response.data);
         setProducts(response.data);
         setLoading(false);
 
-        // Check for out-of-stock products
         const outOfStockProducts = response.data.filter(
           (product) => product.stock === 0
         );
@@ -33,7 +31,7 @@ function AdminProductsList() {
           setNotifications(
             outOfStockProducts.map(
               (product) =>
-                `The ${product.variations[0]?.color}  "${product.name}" of size ${product.variations[0]?.size} is out of stock!`
+                `The ${product.variations[0]?.color} "${product.name}" of size ${product.variations[0]?.size} is out of stock!`
             )
           );
         }
@@ -43,7 +41,15 @@ function AdminProductsList() {
         setError('Error fetching products');
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
+
+  const reloadPage = () => {
+    fetchProducts();
+  };
 
   const deleteProduct = async (id) => {
     const confirmed = window.confirm(
@@ -99,6 +105,14 @@ function AdminProductsList() {
             <th>Price</th>
             <th>Stock</th>
             <th></th>
+            <th>
+              <span className='refresh' onClick={reloadPage}>
+                <FontAwesomeIcon
+                  icon={faSync}
+                  style={{ marginLeft: '10px', cursor: 'pointer' }}
+                />
+              </span>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -139,6 +153,8 @@ function AdminProductsList() {
                     style={{ marginRight: '10px', cursor: 'pointer' }}
                     onClick={() => editProduct(product._id)}
                   />
+                </td>
+                <td>
                   <FontAwesomeIcon
                     icon={faTrash}
                     style={{ cursor: 'pointer' }}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCheck, faSyncAlt, faSync } from '@fortawesome/free-solid-svg-icons';
 import './OrdersList.css';
 
 function OrdersList() {
@@ -9,7 +9,8 @@ function OrdersList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const fetchOrders = () => {
+    setLoading(true);
     axios
       .get('/orders')
       .then((response) => {
@@ -20,7 +21,15 @@ function OrdersList() {
         setError('Error fetching orders');
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchOrders();
   }, []);
+
+  const reloadPage = () => {
+    fetchOrders();
+  };
 
   const deleteOrder = async (id) => {
     const confirmed = window.confirm(
@@ -33,6 +42,22 @@ function OrdersList() {
       setOrders(orders.filter((order) => order._id !== id));
     } catch (error) {
       console.error('Error deleting order:', error);
+    }
+  };
+
+  const confirmOrder = async (id) => {
+    const confirmed = window.confirm(
+      'Are you sure this order is delivered?'
+    );
+    if (!confirmed) return;
+
+    try {
+      await axios.put(`/orders/${id}`, { status: 'Delivered' });
+      setOrders(orders.map((order) => 
+        order._id === id ? { ...order, status: 'Delivered' } : order
+      ));
+    } catch (error) {
+      console.error('Error updating the status of this order:', error);
     }
   };
 
@@ -53,11 +78,15 @@ function OrdersList() {
             <th>Total</th>
             <th>Status</th>
             <th></th>
+            <th className='refresh' onClick={reloadPage}>
+              <FontAwesomeIcon icon={faSync} style={{ marginLeft: '10px', cursor: 'pointer' }} />
+            </th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => {
             const total = order.price * order.quantity;
+
             return (
               <tr key={order._id}>
                 <td>
@@ -90,6 +119,17 @@ function OrdersList() {
                     }>
                     {order.status}
                   </p>
+                </td>
+                <td>
+                  {
+                    order.status === 'Delivered'
+                    ? <FontAwesomeIcon icon={faCheck} style={{ cursor: 'pointer' }}/>
+                    : <FontAwesomeIcon
+                        icon={faSyncAlt}
+                        style={{ marginRight: '10px', cursor: 'pointer' }}
+                        onClick={() => confirmOrder(order._id)}
+                      />
+                  }
                 </td>
                 <td>
                   <FontAwesomeIcon

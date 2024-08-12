@@ -26,6 +26,7 @@ function App() {
     const handlePopState = () => {
       if (!localStorage.getItem('loggedIn')) {
         navigate('/');
+        window.history.pushState(null, null, window.location.href);
       }
     };
 
@@ -38,10 +39,17 @@ function App() {
 
   const handleLogout = () => {
     localStorage.removeItem('loggedIn'); // Assuming you store login state in localStorage
-    navigate('/');
+
+    // Disable forward/backward navigation by replacing the current state and history
+    window.history.replaceState(null, null, window.location.href);
+    navigate('/'); // Navigate to the homepage
+
+    // Push a new state to the history to override the existing one
     window.history.pushState(null, null, window.location.href);
     window.history.pushState(null, null, window.location.href);
-    window.history.go(-2);
+
+    // Disable back and forward navigation
+    window.history.go(-window.history.length);
   };
 
   return (

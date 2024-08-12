@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSync } from '@fortawesome/free-solid-svg-icons';
 import './ProductsList.css';
 import OrderSlip from '../Orders/OrderSlip';
 
@@ -11,7 +13,8 @@ function ProductsList() {
   const [orderSlipVisible, setOrderSlipVisible] = useState(false);
   const [blur, setBlur] = useState('');
 
-  useEffect(() => {
+  const fetchProducts = () => {
+    setLoading(true);
     console.log('Fetching products...');
     axios
       .get('/products')
@@ -25,7 +28,15 @@ function ProductsList() {
         setError('Error fetching products');
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
+
+  const reloadPage = () => {
+    fetchProducts();
+  };
 
   const handleOrderClick = (product) => {
     setSelectedProduct(product);
@@ -62,6 +73,12 @@ function ProductsList() {
     <>
       <div className='products-container' id={blur}>
         <h1>Products</h1>
+        <span className='refresh-productlist' onClick={reloadPage}>
+                <FontAwesomeIcon
+                  icon={faSync}
+                  style={{ marginLeft: '10px', cursor: 'pointer' }}
+                />
+              </span>
         <ul className='productlists'>
           {products.map((product) => (
             <li key={product._id}>

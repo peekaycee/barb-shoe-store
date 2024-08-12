@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash, faSync } from '@fortawesome/free-solid-svg-icons';
 import './UsersList.css';
 
 function UsersList() {
@@ -15,8 +15,8 @@ function UsersList() {
     navigate('/admin/users/usersForm');
   };
 
-  useEffect(() => {
-    console.log('Fetching users...');
+  const fetchUsers = () => {
+    setLoading(true);
     axios
       .get('/users')
       .then((response) => {
@@ -29,7 +29,15 @@ function UsersList() {
         setError(`Error fetching users: ${error.response?.data?.message || error.message}`);
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchUsers();
   }, []);
+
+  const reloadPage = () => {
+    fetchUsers();
+  };
 
   const deleteUser = async (id) => {
     const confirmed = window.confirm('Are you sure you want to delete this user?');
@@ -68,6 +76,9 @@ function UsersList() {
             <th>Email</th>
             <th>Password</th>
             <th></th>
+            <th className='refresh' onClick={reloadPage}>
+              <FontAwesomeIcon icon={faSync} style={{ marginLeft: '10px', cursor: 'pointer' }} />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -88,6 +99,8 @@ function UsersList() {
                   style={{ marginRight: '10px', cursor: 'pointer' }}
                   onClick={() => editUser(user._id)}
                 />
+                </td>
+                <td>
                 <FontAwesomeIcon
                   icon={faTrash}
                   style={{ cursor: 'pointer' }}
