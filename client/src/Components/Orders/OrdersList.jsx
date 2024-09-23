@@ -4,7 +4,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
 import RefreshIcon from '@mui/icons-material/Refresh';
-
 import './OrdersList.css';
 
 function OrdersList() {
@@ -69,7 +68,7 @@ function OrdersList() {
 
   return (
     <section className='ordersList'>
-      <h2>Orders Details</h2>
+      <h2>Order Details</h2>
       <table>
         <thead>
           <tr>

@@ -1,27 +1,40 @@
+.products-container {
+  position: relative;
+}
+
 ul.productlists {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  flex: 1;
   width: 100%;
-  height: auto;
+  padding: 1em 0 3em;
   list-style-type: none;
+  margin: 0;
 }
 
 ul.productlists li {
   width: 20%;
   margin: 20px;
   border-radius: 10px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+ul.productlists li:hover {
+  transform: scale(1.05);
+  box-shadow: 2px 5px 15px 1px rgba(0, 0, 0, 0.2);
 }
 
 .product-card {
   background-color: #e7e7e7;
-  height: auto;
-  flex: 1;
-  padding: 0px;
   border-radius: 10px;
-  box-shadow: 2px 5px 10px 1px #999;
+  overflow: hidden;
+  box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 2px 5px 15px 2px rgba(0, 0, 0, 0.2);
 }
 
 .card-image {
@@ -29,50 +42,80 @@ ul.productlists li {
   width: 100%;
   height: 180px;
   border-radius: 10px 10px 0 0;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-details {
-  padding: 0.5em 1.5em;
-  border-radius: 0 0 10px 10px;
+  padding: 1em 1.5em;
   text-transform: capitalize;
 }
 
 .card-details h2 {
   margin: 0 0 0.3em;
+  font-size: 1.4rem;
 }
 
 .card-details p {
   font-size: 1rem;
+  display: flex;
 }
+
 .card-details span {
   font-weight: bold;
+  display: block;
+  margin-bottom: 0.5em;
 }
 
 .card-details button {
+  background-color: #480505;
+  color: #e7e7e7;
   text-transform: lowercase;
-  text-decoration: none;
   border-radius: 4px;
   display: block;
-  margin: auto;
+  margin: 1em auto 0.5em;
   width: 100%;
-  padding: 0.2em;
+  padding: 0.5em;
   font-size: 1.1rem;
   border: 0;
   outline: none;
-  transition: all 0.25s ease;
   cursor: pointer;
-  margin: 1em 0 0.5em 0;
+  transition: background-color 0.25s ease;
 }
 
-.order-button:hover {
-  background: rgb(95, 93, 93);
+.card-details button:hover {
+  background: #333;
   color: white;
 }
 
-.refresh-productlist{
+.refresh-productlist {
   position: absolute;
   top: 18px;
   right: 35px;
   color: #e7e7e7;
   cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  ul.productlists li {
+    width: 45%; /* Adjust for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  ul.productlists li {
+    width: 80%; /* Adjust for smaller screens */
+  }
+
+  .refresh-productlist {
+    top: 10px;
+    right: 15px;
+  }
 }

@@ -1,25 +1,27 @@
+import { NavLink } from 'react-router-dom';
 import './Homepage.css';
 
-function Home() {
+// eslint-disable-next-line react/prop-types
+function Home({ admin }) {
   return (
-     <>
+    <>
       <section className='home-container'>
-        <div className='sign-post'>
-          <div className='barb'>
-            <h1>Welcome To</h1>
-            <h1>Barb</h1>
-          </div>
-          <div className='shoe-store'>
-            <div className='s'>S</div>
-            <div className='others'>
-              <div className='complete'>
-                <h2>hoe</h2>
-              </div>
-              <div className='complete'>
-                <h2>tore</h2>
-              </div>
-            </div>
-          </div>
+        <div className='homepage-content'>
+          <h1>Fit, Style, and Comfort for Every Foot.</h1>
+          <p>
+            We specialize in creating custom-made shoes that
+            perfectly combine fit, style, and comfort, ensuring every customer
+            walks away with footwear designed uniquely for them.
+          </p>
+          {admin ? (
+            <NavLink to='/admin/products' className='home-button'>
+              <button type='button'>Products</button>
+            </NavLink>
+          ) : (
+            <NavLink to='/user/products' className='home-button'>
+              <button type='button'>Shop Now!</button>
+            </NavLink>
+          )}
         </div>
       </section>
     </>

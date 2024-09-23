@@ -1,11 +1,16 @@
 import { Link, NavLink } from 'react-router-dom';
 import './NavBar.css';
+import { ImageLogo } from '../../../public/assets/images/index.images';
 
 function UserNavBar() {
   return (
     <>
-        <NavLink to={'/user/home'} className='logo'>BSS</NavLink>
-      <nav className='navbar'>
+    <div className='logo-container'>
+        <NavLink to={'/user/home'} className='logo'>
+          <img src={ImageLogo} alt="Logo" />
+        </NavLink>
+      </div>
+      <nav className='navbar users'>
         <ul>
           <li>
             <Link to='/user/home' className='navlinks active'>

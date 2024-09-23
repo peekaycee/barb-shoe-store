@@ -1,11 +1,11 @@
+import './NotFoundPage.css';
 
 const NotFoundPage = () => {
   return (
     <div>
-        <p>404 Page not found</p>
+      <p>404 Page not found</p>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
-
+export default NotFoundPage;

@@ -16,9 +16,10 @@ import ProductForm from './Components/Products/ProductForm';
 import UsersForm from './Components/Users/UsersForm';
 import EditUserForm from './Components/Users/EditUserForm';
 import EditProductForm from './Components/Products/EditProductForm';
+import Dashboard from './Components/Dashboard/Dashboard';
 
-// axios.defaults.baseURL = 'http://localhost:5000/api';
 axios.defaults.baseURL = 'https://barb-shoe-store-9ik8.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:5000/api'; 
 
 function App() {
   const navigate = useNavigate();
@@ -70,8 +71,9 @@ function AdminLayout() {
     <>
       <AdminNavBar />
       <Routes>
-        <Route path='home' element={<Home />} />
+        <Route path='home' element={<Home admin={true} />} />
         <Route path='products' element={<AdminProductsList />} />
+        <Route path='dashboard' element={<Dashboard />} />
         <Route path='products/productForm' element={<ProductForm />} />
         <Route path='products/edit/:id' element={<EditProductForm />} />
         <Route path='orders' element={<OrdersList />} />

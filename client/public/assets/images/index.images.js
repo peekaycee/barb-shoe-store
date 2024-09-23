@@ -1,0 +1,1 @@
+export { default as ImageLogo } from '../images/logo.png'

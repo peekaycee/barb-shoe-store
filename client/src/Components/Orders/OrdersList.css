@@ -100,3 +100,93 @@ td .fa-icon:first-child {
 .refresh {
     cursor: pointer;
 }
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .ordersList {
+        padding: 1em 3em;
+    }
+
+    table {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+
+    thead th {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    td {
+        padding: 10px;
+    }
+
+    button.add-user {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    td .fa-icon {
+        font-size: 16px;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .ordersList {
+        padding: 1em;
+    }
+
+    table {
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    thead th {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    td {
+        padding: 8px;
+    }
+
+    button.add-user {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    td .fa-icon {
+        font-size: 14px;
+    }
+
+    td .fa-icon:first-child {
+        margin-right: 10px;
+    }
+
+    /* Stack table rows on mobile */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Make the headers remain visible */
+    thead {
+        display: none;
+    }
+
+    td {
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 10px;
+        text-align: left;
+        font-weight: bold;
+    }
+}

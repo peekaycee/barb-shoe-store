@@ -1,0 +1,31 @@
+.payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment img {
+    margin-top: 2em;
+    height: 80dvh;
+    box-shadow: 1px 1px 5px 1px #480505;
+    cursor: pointer;
+    transition: transform 0.25s ease; /* Added a transition effect for hover */
+}
+
+.payment img:hover {
+    transform: scale(1.05); /* Zoom effect on hover */
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+    .payment img {
+        height: 60dvh; /* Reduced height for better display on tablets */
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+    .payment img {
+        height: 50dvh; /* Further reduced height for mobile */
+    }
+}

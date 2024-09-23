@@ -4,10 +4,14 @@
   padding: 10px;
   margin: 20px 0;
   border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Added subtle shadow for depth */
+  transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
 .notifications h3 {
   margin-top: 0;
+  font-size: 1.2rem; /* Adjusted size for better readability */
+  color: #b30000; /* Darkened text for contrast */
 }
 
 .notifications ul {
@@ -17,4 +21,26 @@
 
 .notifications li {
   margin: 5px 0;
+  color: #800000; /* Darker red for better visibility */
+  font-size: 1rem; /* Standard font size */
+}
+
+.notifications:hover {
+  background-color: #ffb3b3; /* Lighter color on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notifications {
+    padding: 8px;
+    margin: 15px 0;
+  }
+
+  .notifications h3 {
+    font-size: 1.1rem;
+  }
+
+  .notifications li {
+    font-size: 0.95rem;
+  }
 }

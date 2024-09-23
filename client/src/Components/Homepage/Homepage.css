@@ -1,47 +1,89 @@
+/* Base styles */
 .home-container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    color: #e7e7e7;
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: calc(100dvh - 150px);
+  background-color: #e7e7e700;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.homepage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+  user-select: none;
+  text-align: center;
+  z-index: 1;
+}
+.home-button button{
+  text-align: center;
+  padding: 1em 2em;
+  width: 100%;
+  font-size: 1.2rem;
+  height: 50px;
+  outline: none;
+  border: 0;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.homepage-content button:hover {
+  color: #e7e7e7;
+  outline: 1px solid #4805054d;
+  background: #333;
+}
+
+.home-container h1 {
+  margin-bottom: 10px;
+  color: #480505;
+}
+.home-container p {
+  margin-bottom: 25px;
+  color: #480505;
+}
+.home-button a {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* Tablet styles */
+@media (max-width: 768px) {
+  .homepage-content {
+    width: 70%; 
+    height: auto; 
   }
   
-  .home-container  .barb h1 {
-    font-size: 15vh;
-    margin-bottom: -60px;
-    text-align: right;
-  }
-  .shoe-store {
-    position: relative;
-    display: flex;
-    width: 80%;
-    height: 50%;
-  }
-  .home-container  .shoe-store .s {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    font-weight: bolder;
-    font-size: 45vh;
-    padding: 0 33%;
+  .home-container h1 {
+    font-size: 3rem;
   }
   
-  .shoe-store .others {
-    padding: 2.5em 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .home-container p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 480px) {
+  .homepage-content {
+    width: 85%; 
   }
   
-  .complete {
-    padding: 0 50%;
+  .home-container h1 {
+    font-size: 2.5rem; 
   }
   
-  .complete h2 {
-    font-size: 5rem;
+  .home-container p {
+    font-size: 1.2rem; 
   }
-  
+}

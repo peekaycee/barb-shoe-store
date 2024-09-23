@@ -41,8 +41,6 @@ function ProductsList() {
     setSelectedProduct(product);
     setOrderSlipVisible(true);
     setBlur('blur');
-
-    // Scroll back to the top of the page
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -74,7 +72,7 @@ function ProductsList() {
   return (
     <>
       <div className='products-container' id={blur}>
-        <h1>Products</h1>
+        <h1>Shoes Gallery</h1>
         <span className='refresh-productlist' onClick={reloadPage}>
           <RefreshIcon
             style={{ marginLeft: '10px', cursor: 'pointer' }}

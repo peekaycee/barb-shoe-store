@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './Login.css';
 
 function Login() {
@@ -44,13 +45,27 @@ function Login() {
     }
   };
 
-  const handleUserLogin = (e) => {
+  const handleUserLogin = async (e) => {
     e.preventDefault();
-    if (password === 'user123') {
-      localStorage.setItem('loggedIn', 'user'); // Set loggedIn status
-      navigate('/user/home');
-    } else {
-      setErrorMessage('Invalid user password');
+
+    try {
+      // Fetch the list of users
+      const response = await axios.get('/users');
+      const users = response.data;
+
+      // Check if the entered password matches any user password
+      const validUser = users.find(user => user.password === password);
+
+      if (validUser) {
+        localStorage.setItem('loggedIn', 'user'); // Set loggedIn status
+        navigate('/user/home');
+      } else {
+        setErrorMessage('Invalid user password');
+      }
+
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      setErrorMessage('Error fetching users. Please try again.');
     }
   };
 
@@ -59,7 +74,7 @@ function Login() {
     setHideLoginForm('');
   };
 
-  const submitRegisterForm = (e) => {
+  const submitRegisterForm = async (e) => {
     e.preventDefault();
 
     if (!hasFormChanged()) {
@@ -72,16 +87,25 @@ function Login() {
       email,
       password,
     };
-    console.log(userDetail);
 
-    // Reset the form to initial state
-    setUsername('');
-    setEmail('');
-    setPassword('');
-    setInitialState({ username: '', email: '', password: '' });
-    setErrorMessage(''); // Clear any error messages
-    setHideRegisterForm('hide');
-    setHideLoginForm('');
+    try {
+      // Send POST request to create a new user
+      const response = await axios.post('/users', userDetail);
+      console.log('User created:', response.data);
+
+      // Reset the form to initial state
+      setUsername('');
+      setEmail('');
+      setPassword('');
+      setInitialState({ username: '', email: '', password: '' });
+      setErrorMessage('');
+      setHideRegisterForm('hide');
+      setHideLoginForm('');
+
+    } catch (error) {
+      console.error('Error creating user:', error);
+      setErrorMessage('Failed to register. Please try again.');
+    }
   };
 
   const switchToLoginForm = () => {
@@ -164,7 +188,7 @@ function Login() {
                 placeholder='Enter password'
               />
             </div>
-            <div className='buttons'>
+            <div className='login-buttons'>
               <button onClick={handleAdminLogin}>Login as Admin</button>
               <button onClick={handleUserLogin}>Login as User</button>
             </div>

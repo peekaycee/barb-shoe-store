@@ -66,7 +66,7 @@ function UsersList() {
 
   return (
     <section className='usersList'>
-      <h2>Users Details</h2>
+      <h2>User Details</h2>
       <button className='add-user' onClick={addNewUser}>
         Add New User
       </button>
