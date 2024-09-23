@@ -6,4 +6,7 @@ export default defineConfig({
   optimizeDeps: {
     include: ['@emotion/react'],
   },
+  build: {
+    sourcemap: true,
+  },
 });
