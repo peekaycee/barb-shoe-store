@@ -1,0 +1,8 @@
+[build]
+  base = "client"
+  publish = "dist"
+  command = "npm run build"
+
+# Optional: If you have functions
+[functions]
+  directory = "netlify/functions"
