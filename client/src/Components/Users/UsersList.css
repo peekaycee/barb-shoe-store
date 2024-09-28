@@ -6,8 +6,10 @@
   margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #480505;
+  box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.1);
+
 }
 
 table {

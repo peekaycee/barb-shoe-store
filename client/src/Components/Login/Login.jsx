@@ -6,14 +6,13 @@ import {
   Shoe1,
   Shoe2,
   Shoe3,
+  Shoe4,
   Shoe5,
+  Shoe6,
   Shoe7,
   Shoe8,
-  Shoe10,
-  Shoe11,
-  Shoe12,
-  Shoe13,
 } from '../../../public/assets/galleryImages/gallery.images';
+import { ImageLogo2 } from '../../../public/assets/images/index.images';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -28,13 +27,11 @@ function Login() {
     Shoe1,
     Shoe2,
     Shoe3,
+    Shoe4,
     Shoe5,
+    Shoe6,
     Shoe7,
     Shoe8,
-    Shoe10,
-    Shoe11,
-    Shoe12,
-    Shoe13,
   ];
   // const backgrounds = ['#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb'];
   const [currentShoeIndex, setCurrentShoeIndex] = useState(0);
@@ -151,6 +148,7 @@ function Login() {
     <>
       <section className='login-container'>
         <div className='sign-post'>
+          <img src={ImageLogo2} alt="Logo2" />
           <h1>Barb Shoe Store</h1>
           <p>Fit, Style, and Comfort for Every Foot</p>
           <div className='login-gallery'>

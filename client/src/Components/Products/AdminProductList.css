@@ -1,3 +1,15 @@
+.usersList h2{
+  box-shadow: 2px 5px 10px 1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: fit-content;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 1.5em;
+  user-select: none;
+}
+
 .notifications {
   background-color: #ffcccc;
   border: 1px solid #ff9999;

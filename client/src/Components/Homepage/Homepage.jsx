@@ -5,13 +5,11 @@ import {
   Shoe1,
   Shoe2,
   Shoe3,
+  Shoe4,
   Shoe5,
+  Shoe6,
   Shoe7,
   Shoe8,
-  Shoe10,
-  Shoe11,
-  Shoe12,
-  Shoe13,
 } from '../../../public/assets/galleryImages/gallery.images';
 
 // eslint-disable-next-line react/prop-types
@@ -20,13 +18,11 @@ function Home({ admin }) {
     Shoe1,
     Shoe2,
     Shoe3,
+    Shoe4,
     Shoe5,
+    Shoe6,
     Shoe7,
     Shoe8,
-    Shoe10,
-    Shoe11,
-    Shoe12,
-    Shoe13,
   ];
   // const backgrounds = ['#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb'];
   const [currentShoeIndex, setCurrentShoeIndex] = useState(0);
