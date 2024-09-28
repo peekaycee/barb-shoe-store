@@ -26,7 +26,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handlePopState = (_event) => {
+    const handlePopState = () => {
       if (!localStorage.getItem('loggedIn')) {
         navigate('/'); 
       }
