@@ -139,7 +139,7 @@ function Login() {
     <>
       <section className='login-container'>
         <div className='sign-post'>
-          <img src="/assets/images/logo2.png" alt="Logo2" /> 
+          {/* <img src="/assets/images/logo2.png" alt="Logo2" />  */}
           <h1>Barb Shoe Store</h1>
           <p>Fit, Style, and Comfort for Every Foot</p>
           <div className='login-gallery'>
