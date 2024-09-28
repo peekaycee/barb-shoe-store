@@ -92,6 +92,7 @@ const EditProductForm = () => {
 
   return (
     <section className='productForm'>
+      <div className="closeBtn" onClick={() => navigate('/admin/products')}>X</div>
       <h2>Edit Product Details</h2>
       <form onSubmit={submitForm}>
         <div>

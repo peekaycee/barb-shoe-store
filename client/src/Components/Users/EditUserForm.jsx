@@ -44,6 +44,7 @@ const EditUserForm = () => {
 
   return (
     <section className='userForm'>
+      <div className="closeBtn" onClick={() => navigate('/admin/users')}>X</div>
       <h2>Edit User Details</h2>
       <form onSubmit={submitForm}>
         <div>

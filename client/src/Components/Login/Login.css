@@ -17,9 +17,27 @@
   user-select: none;
 }
 
-.barb h1 {
-  font-size: 20vh;
-  margin-bottom: -70px;
+.login-gallery {
+ position: relative;
+ margin-top: 0em;
+ width: 60%;
+ height: 60%;
+}
+.login-gallery  img {
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   object-fit: center;
+}
+
+.sign-post h1 {
+  font-size: 3rem;
+  margin-bottom: 0.2em;
+}
+
+.sign-post p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5em;
 }
 
 .shoe-store {
@@ -126,7 +144,6 @@ button {
 button:hover {
   outline: 1px solid rgba(72, 5, 5, 0.3);
   background: #333;
-  /* color: #480505; */
 }
 
 .login-buttons button:nth-child(1) {
@@ -164,7 +181,26 @@ button:nth-child(2) {
     font-size: 12vh;
     margin-bottom: -50px;
   }
-
+  .login-gallery {
+    width: 100%;
+    /* height: 50%; */
+   }
+   .sign-post h1 {
+    font-size: 2.25rem;
+  }
+  
+  .sign-post p {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 568px) {
+    .sign-post h1 {
+      font-size: 2rem;
+    }
+    
+    .sign-post p {
+      font-size: 0.7rem;
+    }
+  }
   .shoe-store .s {
     font-size: 30vh;
     padding: 0 10%;
