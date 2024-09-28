@@ -14,7 +14,6 @@ import {
 } from '../../../public/assets/galleryImages/gallery.images';
 import { ImageLogo2 } from '../../../public/assets/images/index.images';
 
-
 function Login() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -24,16 +23,7 @@ function Login() {
   const [hideLoginForm, setHideLoginForm] = useState('hide');
   const [hideRegisterForm, setHideRegisterForm] = useState('');
   const navigate = useNavigate();
-  const shoes = [
-    Shoe1,
-    Shoe2,
-    Shoe3,
-    Shoe4,
-    Shoe5,
-    Shoe6,
-    Shoe7,
-    Shoe8,
-  ];
+  const shoes = [Shoe1, Shoe2, Shoe3, Shoe4, Shoe5, Shoe6, Shoe7, Shoe8];
   // const backgrounds = ['#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb', '#000000', '#000000df', '#480505', '#ffcccb'];
   const [currentShoeIndex, setCurrentShoeIndex] = useState(0);
 
@@ -149,7 +139,7 @@ function Login() {
     <>
       <section className='login-container'>
         <div className='sign-post'>
-          <img src={ImageLogo2} alt="Logo2" />
+          <img src={ImageLogo2} alt='Logo2' />
           <h1>Barb Shoe Store</h1>
           <p>Fit, Style, and Comfort for Every Foot</p>
           <div className='login-gallery'>
