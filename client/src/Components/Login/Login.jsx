@@ -12,7 +12,7 @@ import {
   Shoe7,
   Shoe8,
 } from '../../../public/assets/galleryImages/gallery.images';
-import { ImageLogo2 } from '/assets/images/index.images';
+import { ImageLogo2 } from '../../../public/assets/images/index.images';
 
 
 function Login() {
