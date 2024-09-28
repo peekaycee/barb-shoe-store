@@ -19,7 +19,7 @@ import EditProductForm from './Components/Products/EditProductForm';
 import Dashboard from './Components/Dashboard/Dashboard';
 
 axios.defaults.baseURL = 'https://barb-shoe-store-9ik8.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:5000/api'; 
+// axios.defaults.baseURL = 'http://localhost:5000/api';
 
 function App() {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function App() {
     // eslint-disable-next-line no-unused-vars
     const handlePopState = (event) => {
       if (!localStorage.getItem('loggedIn')) {
-        navigate('/'); 
+        navigate('/');
       }
     };
 
@@ -73,7 +73,8 @@ function AdminLayout() {
         <Route path='users' element={<UsersList />} />
         <Route path='users/usersForm' element={<UsersForm />} />
         <Route path='users/edit/:id' element={<EditUserForm />} />
-        <Route path='*' element={<NotFoundPage />} /> {/* Catch-all for not found */}
+        <Route path='*' element={<NotFoundPage />} />{' '}
+        {/* Catch-all for not found */}
       </Routes>
     </>
   );
@@ -87,7 +88,8 @@ function UserLayout() {
         <Route path='home' element={<Home />} />
         <Route path='products' element={<ProductsList />} />
         <Route path='paymentGateway' element={<PaymentGateway />} />
-        <Route path='*' element={<NotFoundPage />} /> {/* Catch-all for not found */}
+        <Route path='*' element={<NotFoundPage />} />{' '}
+        {/* Catch-all for not found */}
       </Routes>
     </>
   );
