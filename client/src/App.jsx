@@ -25,10 +25,9 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handlePopState = () => {
+    const handlePopState = (event) => {
       if (!localStorage.getItem('loggedIn')) {
-        navigate('/');
-        window.history.pushState(null, null, window.location.href);
+        navigate('/'); 
       }
     };
 
@@ -42,16 +41,9 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem('loggedIn'); // Assuming you store login state in localStorage
 
-    // Disable forward/backward navigation by replacing the current state and history
+    // Replace the current state and navigate to the homepage
+    navigate('/');
     window.history.replaceState(null, null, window.location.href);
-    navigate('/'); // Navigate to the homepage
-
-    // Push a new state to the history to override the existing one
-    window.history.pushState(null, null, window.location.href);
-    window.history.pushState(null, null, window.location.href);
-
-    // Disable back and forward navigation
-    window.history.go(-window.history.length);
   };
 
   return (
@@ -80,6 +72,7 @@ function AdminLayout() {
         <Route path='users' element={<UsersList />} />
         <Route path='users/usersForm' element={<UsersForm />} />
         <Route path='users/edit/:id' element={<EditUserForm />} />
+        <Route path='*' element={<NotFoundPage />} /> {/* Catch-all for not found */}
       </Routes>
     </>
   );
@@ -93,6 +86,7 @@ function UserLayout() {
         <Route path='home' element={<Home />} />
         <Route path='products' element={<ProductsList />} />
         <Route path='paymentGateway' element={<PaymentGateway />} />
+        <Route path='*' element={<NotFoundPage />} /> {/* Catch-all for not found */}
       </Routes>
     </>
   );
