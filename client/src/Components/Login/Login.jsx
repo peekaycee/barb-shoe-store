@@ -12,7 +12,7 @@ import {
   Shoe7,
   Shoe8,
 } from '../../../public/assets/galleryImages/gallery.images';
-import { ImageLogo2 } from '../../../public/assets/images/index.images';
+
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -139,7 +139,7 @@ function Login() {
     <>
       <section className='login-container'>
         <div className='sign-post'>
-          <img src={ImageLogo2} alt='Logo2' />
+          <img src="/assets/images/logo2.png" alt="Logo2" /> 
           <h1>Barb Shoe Store</h1>
           <p>Fit, Style, and Comfort for Every Foot</p>
           <div className='login-gallery'>
