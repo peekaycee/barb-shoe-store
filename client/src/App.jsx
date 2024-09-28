@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -26,7 +25,8 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const handlePopState = () => {
+    // eslint-disable-next-line no-unused-vars
+    const handlePopState = (event) => {
       if (!localStorage.getItem('loggedIn')) {
         navigate('/'); 
       }
