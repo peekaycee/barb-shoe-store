@@ -74,7 +74,6 @@ const OrderSlip = ({ product, userId, onSubmit, onClick }) => {
       await axios.post('/orders', newOrder);
 
       console.log('Order created successfully.');
-      console.log(updatedStock);
 
       dispatch({ type: 'reset' });
       setSize('');

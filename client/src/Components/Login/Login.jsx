@@ -12,28 +12,23 @@ import {
   Shoe7,
   Shoe8,
 } from '../../../public/assets/galleryImages/gallery.images';
-import { ImageLogo } from '../../../public/assets/images/index.images';           // *** changed
-import WhiteCanvas from '../../../public/assets/images/white-canvas.jpg';    // *** changed
+import { ImageLogo } from '../../../public/assets/images/index.images'; 
+import WhiteCanvas from '../../../public/assets/images/white-canvas.jpg'; 
 
 function Login() {
-  //  ********* section one ************
-
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [initialState, setInitialState] = useState({});
-  const [initialState, setInitialState] = useState({ username: '', email: '', password: '' });    // *** changed
-  const [loading, setLoading] = useState(false); // * changed
+  const [initialState, setInitialState] = useState({ username: '', email: '', password: '' });   
+  const [loading, setLoading] = useState(false); 
   const [errorMessage, setErrorMessage] = useState('');
   const [hideLoginForm, setHideLoginForm] = useState('hide');
   const [hideRegisterForm, setHideRegisterForm] = useState('');
   const [currentShoeIndex, setCurrentShoeIndex] = useState(0);
-  const adminPassword = 'admin123'; // * changed
-
   const shoes = [Shoe1, Shoe2, Shoe3, Shoe4, Shoe5, Shoe6, Shoe7, Shoe8];
   const navigate = useNavigate();
+  const adminPassword = 'admin123'; 
 
-  //  ********* section two ************
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -55,43 +50,6 @@ function Login() {
       password: '',
     });
   }, []);
-
-  //  ********* section three ************
-
-  // const handleAdminLogin = (e) => {
-  //   e.preventDefault();
-  //   if (password === 'admin123') {
-  //     localStorage.setItem('loggedIn', 'admin'); // Set loggedIn status
-  //     navigate('/admin/home');
-  //   } else {
-  //     setErrorMessage('Invalid admin password');
-  //   }
-  // };
-
-  // const handleUserLogin = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const { data: users } = await axiosInstance.get('/users'); // Use axiosInstance
-  //     // Fetch the list of users
-  //     // const response = await axios.get('/users');
-  //     // const users = response.data;
-
-  //     // Check if the entered password matches any user password
-  //     const validUser = users.find((user) => user.password === password);
-
-  //     if (validUser) {
-  //       localStorage.setItem('loggedIn', 'user');
-  //       navigate('/user/home');
-  //     } else {
-  //       setErrorMessage('Invalid user password');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching users:', error);
-  //     setErrorMessage('Error fetching users. Please try again.');
-  //   }
-  // };
-  // ******* chnaged below ****************
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -134,47 +92,6 @@ function Login() {
     );
   };
 
-  //  **************** Section four *****************
-
-  // const submitLoginForm = (e) => {
-  //   e.preventDefault();
-  //   setHideLoginForm('');
-  // };
-
-  // const submitRegisterForm = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!hasFormChanged()) {
-  //     setErrorMessage('No changes made to the form.');
-  //     return;
-  //   }
-
-  //   const userDetail = {
-  //     username,
-  //     email,
-  //     password,
-  //   };
-
-  //   try {
-  //     // Send POST request to create a new user
-  //     const response = await axiosInstance.post('/users', userDetail);
-  //     console.log('User created:', response.data);
-
-  //     // Reset the form to initial state
-  //     setUsername('');
-  //     setEmail('');
-  //     setPassword('');
-  //     setInitialState({ username: '', email: '', password: '' });
-  //     setErrorMessage('');
-  //     setHideRegisterForm('hide');
-  //     setHideLoginForm('');
-  //   } catch (error) {
-  //     console.error('Error creating user:', error);
-  //     setErrorMessage('Failed to register. Please try again.');
-  //   }
-  // };
-
-  // *************** Changed below ****************
   const submitRegisterForm = async (e) => {
     e.preventDefault();
     if (!username || !email || !password) {
@@ -208,13 +125,6 @@ function Login() {
     }
   };
 
-  //  **************** Section five *****************
-  // const switchToLoginForm = () => {
-  //   setHideRegisterForm('hide');
-  //   setHideLoginForm('');
-  //   setErrorMessage('');
-  // };
-  //  ************* changed below **************
   const switchToLoginForm = () => {
     setHideRegisterForm('hide');
     setHideLoginForm('');
