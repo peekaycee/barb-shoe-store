@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import './App.css';
 import ProductsList from './Components/Products/ProductsList';
 import OrdersList from './Components/Orders/OrdersList';
@@ -18,8 +18,10 @@ import EditUserForm from './Components/Users/EditUserForm';
 import EditProductForm from './Components/Products/EditProductForm';
 import Dashboard from './Components/Dashboard/Dashboard';
 
-axios.defaults.baseURL = 'https://barb-shoe-store-9ik8.onrender.com/api';
+// axios.defaults.baseURL = 'https://barb-shoe-store-9ik8.onrender.com/api';
 // axios.defaults.baseURL = 'http://localhost:5000/api';
+
+const queryClient = new QueryClient();
 
 function App() {
   const navigate = useNavigate();
@@ -48,20 +50,20 @@ function App() {
   };
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path='/' element={<Login onLogout={handleLogout} />} />
         <Route path='/*' element={<NotFoundPage />} />
         <Route path='/admin/*' element={<AdminLayout />} />
         <Route path='/user/*' element={<UserLayout />} />
       </Routes>
-    </>
+    </QueryClientProvider>
   );
 }
 
 function AdminLayout() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <AdminNavBar />
       <Routes>
         <Route path='home' element={<Home admin={true} />} />
@@ -76,13 +78,13 @@ function AdminLayout() {
         <Route path='*' element={<NotFoundPage />} />{' '}
         {/* Catch-all for not found */}
       </Routes>
-    </>
+    </QueryClientProvider>
   );
 }
 
 function UserLayout() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <UserNavBar />
       <Routes>
         <Route path='home' element={<Home />} />
@@ -91,7 +93,7 @@ function UserLayout() {
         <Route path='*' element={<NotFoundPage />} />{' '}
         {/* Catch-all for not found */}
       </Routes>
-    </>
+      </QueryClientProvider>
   );
 }
 

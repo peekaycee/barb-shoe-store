@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; 
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import EditIcon from '@mui/icons-material/Edit';
@@ -18,7 +18,7 @@ function UsersList() {
 
   const fetchUsers = () => {
     setLoading(true);
-    axios
+    axiosInstance
       .get('/users')
       .then((response) => {
         console.log('Users fetched:', response.data);

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; 
 import './UsersForm.css';
 
 const EditUserForm = () => {
@@ -12,7 +12,7 @@ const EditUserForm = () => {
 
   useEffect(() => {
     // Fetch the user data by ID
-    axios.get(`/users/${id}`)
+    axiosInstance.get(`/users/${id}`)
       .then(response => {
         const user = response.data;
         setUsername(user.username);
@@ -34,7 +34,7 @@ const EditUserForm = () => {
 
     try {
       console.log('Submitting updated user data:', updatedUser);
-      const response = await axios.put(`/users/${id}`, updatedUser); // Use PUT for consistency
+      const response = await axiosInstance.put(`/users/${id}`, updatedUser); // Use PUT for consistency
       console.log('User updated:', response.data);
       navigate('/admin/users');
     } catch (error) {

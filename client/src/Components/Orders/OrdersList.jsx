@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; // Use axiosInstance
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckIcon from '@mui/icons-material/Check';
 import DoneAllIcon from '@mui/icons-material/DoneAll';
@@ -13,7 +13,7 @@ function OrdersList() {
 
   const fetchOrders = () => {
     setLoading(true);
-    axios
+    axiosInstance
       .get('/orders')
       .then((response) => {
         setOrders(response.data);
@@ -40,7 +40,7 @@ function OrdersList() {
     if (!confirmed) return;
 
     try {
-      await axios.delete(`/orders/${id}`);
+      await axiosInstance.delete(`/orders/${id}`);
       setOrders(orders.filter((order) => order._id !== id));
     } catch (error) {
       console.error('Error deleting order:', error);
@@ -54,7 +54,7 @@ function OrdersList() {
     if (!confirmed) return;
 
     try {
-      await axios.put(`/orders/${id}`, { status: 'Delivered' });
+      await axiosInstance.put(`/orders/${id}`, { status: 'Delivered' });
       setOrders(orders.map((order) => 
         order._id === id ? { ...order, status: 'Delivered' } : order
       ));

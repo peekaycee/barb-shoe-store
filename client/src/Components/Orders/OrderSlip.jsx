@@ -2,7 +2,7 @@
 import { useReducer, useState, useEffect, useCallback } from 'react';
 import './OrderSlip.css';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; 
 
 const initialState = { count: 1 };
 
@@ -44,17 +44,22 @@ const OrderSlip = ({ product, userId, onSubmit, onClick }) => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
 
-    if (state.count > product.stock) {
-      setError(`Cannot purchase more than ${product.stock} items`);
+    if (product.stock === 0){
+      setError(`This product is out of stock`);
       return;
-    }
+    } else if (state.count > product.stock) {
+      setError(`Cannot purchase more than ${product.stock} item(s)`);
+      return;
+    } 
+    
+ 
 
     const updatedStock = product.stock - state.count;
     const totalPrice = (product.price * state.count).toFixed(2);
 
     try {
       // Update the stock in the backend
-      await axios.put(`/products/${product._id}`, { stock: updatedStock });
+      await axiosInstance.put(`/products/${product._id}`, { stock: updatedStock });
 
       const newOrder = {
         userId: userId,  // Use the dynamic userId here
@@ -71,16 +76,13 @@ const OrderSlip = ({ product, userId, onSubmit, onClick }) => {
         total: totalPrice,
       };
 
-      await axios.post('/orders', newOrder);
-
-      console.log('Order created successfully.');
+      await axiosInstance.post('/orders', newOrder);
 
       dispatch({ type: 'reset' });
       setSize('');
       setColor('');
       setBrandName('');
       onSubmit();
-
       navigate('/user/paymentGateway');
     } catch (error) {
       if (error.response) {

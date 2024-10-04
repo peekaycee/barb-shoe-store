@@ -16,8 +16,8 @@
   align-items: center;
   justify-content: center;
   width: 18%;
-  height: 50%;
-  margin: -3em 0 8em;
+  height: 65%;
+  margin: -5em 0 2.5em;
 }
 .gallery  img {
   position: absolute;
@@ -31,12 +31,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 40%;
   height: auto;
   user-select: none;
   text-align: center;
   z-index: 1;
   margin-top: -6em;
+}
+.homepage-content .brand{
+  margin-bottom: 0.5em;
 }
 .home-button button{
   text-align: center;
@@ -59,10 +62,15 @@
 }
 
 .home-container h1 {
-  margin-bottom: 10px;
+  font-size: 2.2rem;
+  color: #480505;
+}
+.home-container h2 {
+  font-size: 1.2rem;
   color: #480505;
 }
 .home-container p {
+  margin-top: 5px;
   margin-bottom: 25px;
   color: #480505;
 }
@@ -75,7 +83,9 @@
   border-radius: 5px;
   text-decoration: none;
 }
-
+.greeting {
+  margin: 10px 0;
+}
 /* Tablet styles */
 @media (max-width: 768px) {
   .homepage-content {
@@ -83,11 +93,21 @@
     height: auto; 
     margin-top: 4em;
   }
+  .homepage-content  .brand{
+    width: 50%;
+    height: 50%;
+    display: block;
+  }
   .gallery{
     display: none;
   }
+
   .home-container h1 {
-    font-size: 3rem;
+    font-size: 2.5rem; 
+  }
+
+  .home-container h2 {
+    font-size: 1.5rem; 
   }
   
   .home-container p {
@@ -97,15 +117,19 @@
 
 /* Mobile styles */
 @media (max-width: 480px) {
-  .homepage-content {
+  .homepage-content { 
+    margin-top: -1em;
     width: 85%; 
   }
   
   .home-container h1 {
-    font-size: 2.5rem; 
+    font-size: 2rem; 
+  }
+  .home-container h2 {
+    font-size: 1rem; 
   }
   
   .home-container p {
-    font-size: 1.2rem; 
+    font-size: 1rem; 
   }
 }

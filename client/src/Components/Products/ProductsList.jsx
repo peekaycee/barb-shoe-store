@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; 
 import RefreshIcon from '@mui/icons-material/Refresh';
 import './ProductsList.css';
 import OrderSlip from '../Orders/OrderSlip';
@@ -15,7 +15,7 @@ function ProductsList() {
   const fetchProducts = () => {
     setLoading(true);
     console.log('Fetching products...');
-    axios
+    axiosInstance
       .get('/products')
       .then((response) => {
         console.log('Products fetched:', response.data);

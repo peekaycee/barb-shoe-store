@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; 
 import './UsersForm.css';
 
 const UsersForm = () => {
@@ -18,7 +18,7 @@ const UsersForm = () => {
     };
   
     try {
-      const response = await axios.post('/users', newUser);
+      const response = await axiosInstance.post('/users', newUser);
       console.log('User created:', response.data);
   
       navigate('/admin/users');

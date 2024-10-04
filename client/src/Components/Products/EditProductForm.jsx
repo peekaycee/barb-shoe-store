@@ -1,7 +1,7 @@
 import './ProductForm.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios'; 
 
 const EditProductForm = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ const EditProductForm = () => {
 
   useEffect(() => {
     // Fetch the product data by ID
-    axios
+    axiosInstance
       .get(`/products/${id}`)
       .then((response) => {
         const product = response.data;
@@ -74,7 +74,7 @@ const EditProductForm = () => {
     if (stock !== initialProduct.stock) updatedProduct.stock = stock;
 
     try {
-      const response = await axios.put(`/products/${id}`, updatedProduct); // Use PUT for updates
+      const response = await axiosInstance.put(`/products/${id}`, updatedProduct); // Use PUT for updates
       console.log('Product updated:', response.data);
       navigate('/admin/products');
     } catch (error) {

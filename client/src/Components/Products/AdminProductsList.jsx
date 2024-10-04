@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import EditIcon from '@mui/icons-material/Edit';
@@ -19,7 +19,7 @@ function AdminProductsList() {
 
   const fetchProducts = () => {
     setLoading(true);
-    axios
+    axiosInstance
       .get('/products')
       .then((response) => {
         setProducts(response.data);
@@ -59,7 +59,7 @@ function AdminProductsList() {
     if (!confirmed) return;
 
     try {
-      await axios.delete(`/products/${id}`);
+      await axiosInstance.delete(`/products/${id}`);
       setProducts(products.filter((product) => product._id !== id));
     } catch (error) {
       console.error('Error deleting product:', error);

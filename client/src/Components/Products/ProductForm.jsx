@@ -1,7 +1,7 @@
 import './ProductForm.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../../api/axios';
 
 const ProductForm = () => {
   const [image, setImage] = useState('');
@@ -27,7 +27,7 @@ const ProductForm = () => {
     };
 
     try {
-      const response = await axios.post('/products', newProduct);
+      const response = await axiosInstance.post('/products', newProduct);
       console.log('Product created:', response.data);
 
       navigate('/admin/products');

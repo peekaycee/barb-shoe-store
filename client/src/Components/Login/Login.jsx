@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../api/axios';
+import axiosInstance from '../../api/axios';
 import './Login.css';
 import {
   Shoe1,
