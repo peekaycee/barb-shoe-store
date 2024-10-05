@@ -43,7 +43,7 @@
 }
 
 .userForm button {
-    width: 40%;
+    width: fit-content;
     margin: 0 auto;
     margin-top: 20px;
     display: block;

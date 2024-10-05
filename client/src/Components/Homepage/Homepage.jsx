@@ -69,7 +69,7 @@ function Home({ admin }) {
             <h2>Fit, Style, and Comfort for Every Foot.</h2>
             {!admin && username && <h2 className='greeting'>Welcome back, {username}!</h2>}
             <p>
-              We create custom-made shoes, ensuring every customer walks away with footwears designed uniquely for them.
+            Custom-made shoes uniquely designed for you.
             </p>
             {admin ? (
               <NavLink to='/admin/dashboard' className='home-button'>

@@ -41,7 +41,7 @@ function ProductsList() {
     setSelectedProduct(product);
     setOrderSlipVisible(true);
     setBlur('blur');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to top
   };
 
   const handleCloseOrderSlip = () => {

@@ -200,7 +200,11 @@ button.paymentBtn {
     width: 83%;
     left: 5%;
     padding: 0.8em;
-    top: 10%;
+    top: 13%;
+    z-index: 1;
+  }
+  .closeBtn{
+    margin-top: -0.7em;
   }
   .order-slip-container h3 {
     font-size: 1rem;

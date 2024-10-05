@@ -125,10 +125,10 @@ div.logo-container > svg{
   .navbar{
     display: none;
   }
-
   div.logo-container > svg{       
     display: block; 
   }
+
   .navbar ul li {
     width: 40%;
   }
@@ -159,13 +159,15 @@ div.logo-container > svg{
   .navbar {
     flex-direction: column;
   }
-
+  
   .navbar ul {
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
-
+nav.responsive-navbar{
+  margin-top: -2.2em;
+}
   .navbar ul li {
     width: 100%;
     margin-bottom: 10px;

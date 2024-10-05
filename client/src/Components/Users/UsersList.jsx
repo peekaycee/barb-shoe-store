@@ -45,7 +45,7 @@ function UsersList() {
     if (!confirmed) return;
   
     try {
-      await axios.delete(`/users/${id}`);
+      await axiosInstance.delete(`/users/${id}`);
       setUsers(users.filter((user) => user._id !== id));
     } catch (error) {
       console.error('Error deleting user:', error);

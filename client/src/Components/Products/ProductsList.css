@@ -121,15 +121,17 @@ div.products-container > h1 {
 }
 
 /* Responsive Design */
+/* Adjust for Tablets */
 @media (max-width: 1024px) {
   ul.productlists li {
-    width: 45%; /* Adjust for medium screens */
+    width: 45%; 
   }
 }
 
+/* Adjust for mobile */
 @media (max-width: 768px) {
   ul.productlists li {
-    width: 80%; /* Adjust for smaller screens */
+    width: 80%; 
   }
 
   .refresh-productlist {
