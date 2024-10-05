@@ -131,21 +131,21 @@ function AdminProductsList() {
                   />
                 </td>
                 <td>
-                  <p>{product.name}</p>
+                  <p className='brand-name'>{product.name}</p>
                 </td>
                 <td>
                   {product.variations.map((variation, index) => (
                     <div key={index}>
-                      <p>Color: {variation.color}</p>
-                      <p>Size: {variation.size}</p>
+                      <p> <span className='tag'>Color: </span>  <span className='hideTag'>Color: </span>{variation.color}</p>
+                      <p> <span className='tag'>Size: </span>  <span className='hideTag'>Size: </span>{variation.size}</p>
                     </div>
                   ))}
                 </td>
                 <td>
-                  <p>{formattedPrice}</p>
+                 <p><span className='tag'>Price: </span>{formattedPrice}</p>
                 </td>
                 <td>
-                  <p>{product.stock}</p>
+                  <p> <span className='tag'>Stock: </span>{product.stock}</p>
                 </td>
                 <td>
                   <EditIcon

@@ -42,7 +42,7 @@ const ProductForm = () => {
 
   return (
     <section className='productForm'>
-       <div className="closeBtn" onClick={() => navigate('/admin/products')}>X</div>
+       <div className="form-closeBtn" onClick={() => navigate('/admin/products')}>X</div>
       <h2>Add New Product</h2>
       <form>
         <div>

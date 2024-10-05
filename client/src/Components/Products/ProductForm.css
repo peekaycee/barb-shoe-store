@@ -5,7 +5,7 @@
     width: 30%;
     max-width: 100%; /* Ensure it doesn't overflow on smaller screens */
     height: auto;
-    padding: 2em 3em;
+    padding: 2em 3.2em 2em 2em;
     margin: 30px auto;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
     display: flex;
@@ -15,10 +15,10 @@
     transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
-.closeBtn{
+.form-closeBtn{
     position: absolute;
-    top: 25px;
-    right: 30px;
+    top: 1em;
+    right: 2em;
     cursor: pointer;
 }
 
@@ -69,8 +69,8 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .productForm {
-        width: 80%; /* Expand form width on smaller screens */
-        padding: 1.5em 2em;
+        width: 65%; /* Expand form width on smaller screens */
+        /* padding: 1.5em 2em; */
     }
 
     .productForm h2 {

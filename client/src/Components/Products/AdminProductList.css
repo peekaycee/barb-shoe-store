@@ -36,9 +36,15 @@
   color: #800000; /* Darker red for better visibility */
   font-size: 1rem; /* Standard font size */
 }
+table tr{
+  text-transform: capitalize;
+}
 
 .notifications:hover {
   background-color: #ffb3b3; /* Lighter color on hover */
+}
+table span.tag {
+  display: none;
 }
 
 /* Responsive Design */
@@ -54,5 +60,41 @@
 
   .notifications li {
     font-size: 0.95rem;
-  }
+  }  
 }
+
+@media (max-width: 480px){
+  table span.tag {
+    display: block;
+    margin-right: 5px;
+    font-weight: 400;
+  }
+  table span.hideTag {
+    display: none;
+  }
+
+  table tr {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 1em;
+    justify-content: center;
+  }
+
+table tr td:nth-child(2){
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+  table tr img:nth-child(1){
+    position: absolute;
+    left: -18em;
+    top: 2.5em;
+  }
+
+  table tr p{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    color: #380202;
+  }
+} 

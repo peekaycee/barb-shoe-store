@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axiosInstance from '../../api/axios'; 
+import axiosInstance from '../../api/axios';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import './ProductsList.css';
 import OrderSlip from '../Orders/OrderSlip';
@@ -41,7 +41,11 @@ function ProductsList() {
     setSelectedProduct(product);
     setOrderSlipVisible(true);
     setBlur('blur');
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to top
+
+    // Use setTimeout to ensure scroll happens after DOM update
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 0);
   };
 
   const handleCloseOrderSlip = () => {
@@ -74,9 +78,7 @@ function ProductsList() {
       <div className='products-container' id={blur}>
         <h1>Shoes Gallery</h1>
         <span className='refresh-productlist' onClick={reloadPage}>
-          <RefreshIcon
-            style={{ marginLeft: '10px', cursor: 'pointer' }}
-          />
+          <RefreshIcon style={{ marginLeft: '10px', cursor: 'pointer' }} />
         </span>
         <ul className='productlists'>
           {products.map((product) => (
@@ -87,7 +89,11 @@ function ProductsList() {
                     <img
                       src={`/assets/images/${product.imageUrl}`}
                       alt={product.imageUrl}
-                      style={{ width: '100%', height: '100%', borderRadius: '10px 10px 0 0' }}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '10px 10px 0 0',
+                      }}
                     />
                   ) : (
                     'thumbnail'
