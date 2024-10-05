@@ -60,10 +60,10 @@ function Home({ admin }) {
           </div>
           <div className='homepage-content'>
           <div className="brand">
-          <div className="overlay"></div>
-          <div className="shoe-image">
+          {/* <div className="overlay"></div> */}
+          {/* <div className="shoe-image">
             <img src={Canvas} alt="Image of a brown shoe" />
-          </div>
+          </div> */}
         </div>
             <h1>Barbs Shoe Store</h1>
             <h2>Fit, Style, and Comfort for Every Foot.</h2>
