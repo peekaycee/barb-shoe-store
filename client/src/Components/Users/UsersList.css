@@ -92,3 +92,54 @@ td .fa-icon:first-child {
       font-size: 0.9rem;
   }
 }
+
+@media (max-width: 480px){
+  table span.tag {
+    display: block;
+    margin-right: 5px;
+    font-weight: 600;
+    color: #480505;
+  }
+  table span.hideTag {
+    display: none;
+  }
+
+  table tr {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 1em;
+    justify-content: center;
+  }
+
+table tr td:nth-child(2){
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #480505;
+}
+#root > section > table > tbody > tr > td:nth-child(2){
+   font-size: 1.3rem;
+   font-weight: 700;
+}
+table > tbody > tr > td:nth-child(2) > p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+  table tr img:nth-child(1){
+    position: absolute;
+    left: -16em;
+    top: 2.5em;
+  }
+
+  table > tbody > tr > td:nth-child(4) {
+    padding: 0;
+    margin-right: 6px;
+  }
+
+  table tr p{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    color: #1b0303;
+  }
+}

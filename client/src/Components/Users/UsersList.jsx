@@ -86,13 +86,13 @@ function UsersList() {
           {users.map((user) => (
             <tr key={user._id}>
               <td>
-                <p>{user.username}</p>
+                <p><span className='tag'>Username: </span>{user.username}</p>
               </td>
               <td>
-                <p>{user.email}</p>
+                <p><span className='tag'>Email: </span>{user.email}</p>
               </td>
               <td>
-                <p>{user.password}</p>
+                <p><span className='tag'>Password: </span>{user.password}</p>
               </td>
               <td>
                 <EditIcon

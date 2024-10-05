@@ -102,14 +102,14 @@ function OrdersList() {
                 <td>
                   {order.variations.map((variation, index) => (
                     <div key={index}>
-                      <p>Color: {variation.color}</p>
-                      <p>Size: {variation.size}</p>
+                      <p><span className='tag'>Color: </span><span className='hideTag'>Color: </span>{variation.color}</p>
+                      <p><span className='tag'>Size: </span> <span className='hideTag'>Size: </span>{variation.size}</p>
                     </div>
                   ))}
                 </td>
-                <td>${order.price}</td>
-                <td>{order.quantity}</td>
-                <td>${total.toFixed(2)}</td>
+                <td><p><span className='tag'>Price: </span>${order.price}</p></td>
+                <td><p><span className='tag'>Quantity: </span>{order.quantity}</p></td>
+                <td><p><span className='tag'>Total: </span>${total.toFixed(2)}</p></td>
                 <td>
                   <p
                     className={

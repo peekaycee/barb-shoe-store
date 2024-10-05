@@ -153,7 +153,7 @@ function Login() {
         <div className='brand'>
           <div className='register-overlay'></div>
           <div className='shoe-image'>
-            <img src={WhiteCanvas} alt='Image of a brown shoe' className='loginImage'/>
+            <img src={WhiteCanvas} alt='Image of a white shoe' className='loginImage'/>
           </div>
           <div className='brand-details'>
             <img src={ImageLogo} alt='Brand Logo' />

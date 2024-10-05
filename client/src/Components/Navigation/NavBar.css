@@ -134,15 +134,16 @@ div.logo-container > svg {
   .navbar ul li {
     width: 40%;
   }
+  .responsive-navbar > ul > li:nth-child(3) > a.last, 
   .responsive-navbar > ul > li:nth-child(5) > a {
-    padding-bottom: 2em;
+    padding-bottom: 3em;
   }
   .navbar ul li::after {
     bottom: 8px;
   }
 
   .navlinks {
-    padding: 0.8em 0;
+    padding: 1em 0;
   }
 
   .logo-container img {

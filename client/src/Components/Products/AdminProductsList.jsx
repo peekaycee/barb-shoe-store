@@ -105,7 +105,7 @@ function AdminProductsList() {
             <th>Variations</th>
             <th>Price</th>
             <th>Stock</th>
-            <th></th>
+            <th className='tools'></th>
             <th>
               <span className='refresh' onClick={reloadPage}>
                 <RefreshIcon
@@ -137,7 +137,7 @@ function AdminProductsList() {
                   {product.variations.map((variation, index) => (
                     <div key={index}>
                       <p> <span className='tag'>Color: </span>  <span className='hideTag'>Color: </span>{variation.color}</p>
-                      <p> <span className='tag'>Size: </span>  <span className='hideTag'>Size: </span>{variation.size}</p>
+                      <p> <span className='tag'>Size: </span>  <span >Size: </span>{variation.size}</p>
                     </div>
                   ))}
                 </td>

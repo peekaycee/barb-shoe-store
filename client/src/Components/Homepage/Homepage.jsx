@@ -62,7 +62,7 @@ function Home({ admin }) {
             <div className='brand'>
               <div className='home-overlay'></div>
               <div className='shoe-image'>
-                <img src={Canvas} alt='Image of a brown shoe' className='homeImage'/>
+                <img src={Canvas} alt='Image of a white shoe' className='homeImage'/>
               </div>
             </div>
             <h1>Barbs Shoe Store</h1>

@@ -78,7 +78,13 @@ td .fa-icon:hover {
 td .fa-icon:first-child {
   margin-right: 15px;
 }
+table span.tag {
+  display: none;
+}
 
+table tr{
+  text-transform: capitalize;
+}
 /* Status Column Styling */
 .status-not-delivered,
 .status-pending,
@@ -97,10 +103,6 @@ td .fa-icon:first-child {
   background-color: red;
   color: #e7e7e7;
 }
-
-/* .status-not-delivered {
-    background-color: lightcoral;
-} */
 
 .refresh {
   cursor: pointer;
@@ -139,12 +141,13 @@ td .fa-icon:first-child {
 /* Mobile styles */
 @media (max-width: 480px) {
   .ordersList {
-    padding: 1em;
+    padding: 1em 2em;
   }
 
   table {
     margin-top: 10px;
     font-size: 12px;
+    padding: 0.5em;
   }
 
   thead th {
@@ -200,3 +203,41 @@ td .fa-icon:first-child {
     font-weight: bold;
   }
 }
+
+@media (max-width: 480px){
+  table span.tag {
+    display: block;
+    margin-right: 5px;
+    font-weight: 500;
+    color: #480505;
+  }
+  table span.hideTag {
+    display: none;
+  }
+
+  table tr {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding-right: 1em;
+    justify-content: center;
+  }
+
+table tr td:nth-child(2){
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #480505;
+}
+  table tr img:nth-child(1){
+    position: absolute;
+    left: -16em;
+    top: 2.5em;
+  }
+
+  table tr p{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    color: #1b0303;
+  }
+} 
