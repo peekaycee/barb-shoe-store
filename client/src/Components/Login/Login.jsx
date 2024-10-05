@@ -12,7 +12,7 @@ import {
   Shoe7,
   Shoe8,
 } from '../../../public/assets/galleryImages/gallery.images';
-import { ImageLogo, ImageLogo1 } from '../../../public/assets/images/index.images'; 
+import { ImageLogo } from '../../../public/assets/images/index.images'; 
 import WhiteCanvas from '../../../public/assets/images/white-canvas.jpg'; 
 
 function Login() {
@@ -137,7 +137,7 @@ function Login() {
   return (
     <section className='login-container'>
       <div className='sign-post'>
-        <img src={ImageLogo1} alt='Barb Shoe Store Logo' />
+        <img src={'/public/assets/images/logo2.png'} alt='Barb Shoe Store Logo' />
         <h1>Barb Shoe Store</h1>
         <p>Fit, Style, and Comfort for Every Foot</p>
         <div className='login-gallery'>

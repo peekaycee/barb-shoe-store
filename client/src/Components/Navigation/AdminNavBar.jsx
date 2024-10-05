@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useEffect } from 'react';
 import './NavBar.css';
-import { ImageLogo, ImageLogo1 } from '../../../public/assets/images/index.images';
+import { ImageLogo } from '../../../public/assets/images/index.images';
 
 const AdminNavBar = () => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const AdminNavBar = () => {
       navMenu.style.display = (navMenu.style.display === 'block') ? 'none' : 'block';
       navBackground.style.backgroundColor = (navMenu.style.display === 'none') ? null : '#480505';
       navBackgroundSvg.style.color = (navMenu.style.display === 'none') ? null : '#e7e7e7';
-      navBackgroundLogo.src = (navMenu.style.display === 'none') ? ImageLogo : ImageLogo1;
+      navBackgroundLogo.src = (navMenu.style.display === 'none') ? ImageLogo : '/public/assets/images/logo2.png';
     }
   };
 

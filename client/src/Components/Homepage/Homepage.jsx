@@ -12,7 +12,7 @@ import {
   Shoe7,
   Shoe8,
 } from '../../../public/assets/galleryImages/gallery.images';
-// import Canvas from '../../../public/assets/images/multicolor-trenas.png';
+import Canvas from '../../../public/assets/images/multicolor-trenas.png';
 
 function Home({ admin }) {
   const shoes = [Shoe1, Shoe2, Shoe3, Shoe4, Shoe5, Shoe6, Shoe7, Shoe8];
@@ -27,7 +27,7 @@ function Home({ admin }) {
     if (storedUsername) {
       setUsername(storedUsername);
     }
-    
+
     // Set loading to false after fetching username
     setLoading(false);
 
@@ -59,18 +59,18 @@ function Home({ admin }) {
             <img src={shoes[currentShoeIndex]} alt='Shoe Gallery' />
           </div>
           <div className='homepage-content'>
-          <div className="brand">
-          {/* <div className="overlay"></div> */}
-          {/* <div className="shoe-image">
-            <img src={Canvas} alt="Image of a brown shoe" />
-          </div> */}
-        </div>
+            <div className='brand'>
+              <div className='overlay'></div>
+              <div className='shoe-image'>
+                <img src={Canvas} alt='Image of a brown shoe' />
+              </div>
+            </div>
             <h1>Barbs Shoe Store</h1>
             <h2>Fit, Style, and Comfort for Every Foot.</h2>
-            {!admin && username && <h2 className='greeting'>Welcome back, {username}!</h2>}
-            <p>
-            Custom-made shoes uniquely designed for you.
-            </p>
+            {!admin && username && (
+              <h2 className='greeting'>Welcome back, {username}!</h2>
+            )}
+            <p>Custom-made shoes uniquely designed for you.</p>
             {admin ? (
               <NavLink to='/admin/dashboard' className='home-button'>
                 <button type='button'>Dashboard</button>
