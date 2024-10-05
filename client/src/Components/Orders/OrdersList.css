@@ -111,7 +111,7 @@ table tr{
 /* Tablet styles */
 @media (max-width: 768px) {
   .ordersList {
-    padding: 1em 3em;
+    padding: 1em;
   }
 
   table {

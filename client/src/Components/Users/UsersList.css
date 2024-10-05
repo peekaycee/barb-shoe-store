@@ -80,7 +80,7 @@ td .fa-icon:first-child {
 /* Responsive Design */
 @media (max-width: 768px) {
   .usersList {
-      padding: 1em 2em;
+      padding: 1em;
   }
 
   table {

@@ -82,7 +82,7 @@ table span.tag {
   }
   table tr img:nth-child(1) {
     position: absolute;
-    left: -16em;
+    left: -18em;
     top: 2.5em;
   }
   table tr td:nth-child(2)  p.brand-name{
