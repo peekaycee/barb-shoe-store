@@ -97,7 +97,6 @@
   .homepage-content .brand {
     position: relative;
     width: 20%;
-    /* height: 50%; */
     border-radius: 50%;
     margin-bottom: 1.5em;
     height: auto;
@@ -110,11 +109,11 @@
     height: 100%;
     border-radius: 50%;
   }
-  div.overlay{
+  div.home-overlay{
     position: absolute;
     border-radius: 50%;
   }
-  div.shoe-image img{
+  div.shoe-image .homeImage {
     position: absolute;
     left: 0;
     top: 0;

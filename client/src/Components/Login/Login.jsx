@@ -151,9 +151,9 @@ function Login() {
         id={hideRegisterForm}
         onSubmit={submitRegisterForm}>
         <div className='brand'>
-          <div className='overlay'></div>
+          <div className='register-overlay'></div>
           <div className='shoe-image'>
-            <img src={WhiteCanvas} alt='Image of a brown shoe' />
+            <img src={WhiteCanvas} alt='Image of a brown shoe' className='loginImage'/>
           </div>
           <div className='brand-details'>
             <img src={ImageLogo} alt='Brand Logo' />
@@ -162,8 +162,6 @@ function Login() {
             <h3 className='reg-text'>Register</h3>
           </div>
         </div>
-
-        
         <h2>Register</h2>
         <input
           type='text'
@@ -203,7 +201,7 @@ function Login() {
             <img src={WhiteCanvas} alt='Image of a brown shoe' />
           </div>
           <div className='brand-details'>
-            <img src={ImageLogo} alt='Brand Logo' />
+            <img src={ImageLogo} alt='Brand Logo' className='loginImage'/>
             <h1>Barb Shoe Store</h1>
             <p className='text'>Fit, Style, and Comfort for Every Foot</p>
             <h3 className='reg-text'>Login</h3>
