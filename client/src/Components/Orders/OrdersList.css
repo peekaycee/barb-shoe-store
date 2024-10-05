@@ -111,7 +111,7 @@ table tr{
 /* Tablet styles */
 @media (max-width: 768px) {
   .ordersList {
-    padding: 1em;
+    padding: 1em 2em;
   }
 
   table {
@@ -141,7 +141,7 @@ table tr{
 /* Mobile styles */
 @media (max-width: 480px) {
   .ordersList {
-    padding: 1em 2em;
+    padding: 1em;
   }
 
   table {

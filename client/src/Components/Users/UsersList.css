@@ -80,7 +80,7 @@ td .fa-icon:first-child {
 /* Responsive Design */
 @media (max-width: 768px) {
   .usersList {
-      padding: 1em;
+      padding: 1em 2em;
   }
 
   table {
@@ -94,6 +94,10 @@ td .fa-icon:first-child {
 }
 
 @media (max-width: 480px){
+  .usersList {
+    padding: 1em;
+}
+
   table span.tag {
     display: block;
     margin-right: 5px;
