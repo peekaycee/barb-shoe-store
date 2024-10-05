@@ -12,7 +12,7 @@ import {
   Shoe7,
   Shoe8,
 } from '../../../public/assets/galleryImages/gallery.images';
-import Canvas from '../../../public/assets/images/multicolor-trenas.png';
+// import Canvas from '../../../public/assets/images/multicolor-trenas.png';
 
 function Home({ admin }) {
   const shoes = [Shoe1, Shoe2, Shoe3, Shoe4, Shoe5, Shoe6, Shoe7, Shoe8];
