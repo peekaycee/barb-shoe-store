@@ -22,7 +22,7 @@ const AdminNavBar = () => {
       navMenu.style.display = (navMenu.style.display === 'block') ? 'none' : 'block';
       navBackground.style.backgroundColor = (navMenu.style.display === 'none') ? null : '#480505';
       navBackgroundSvg.style.color = (navMenu.style.display === 'none') ? null : '#e7e7e7';
-      navBackgroundLogo.src = (navMenu.style.display === 'none') ? ImageLogo : '/public/assets/images/logo2.png';
+      navBackgroundLogo.src = (navMenu.style.display === 'none') ? ImageLogo : '/assets/images/logo2.png';
     }
   };
 

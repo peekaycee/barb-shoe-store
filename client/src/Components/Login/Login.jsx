@@ -137,7 +137,7 @@ function Login() {
   return (
     <section className='login-container'>
       <div className='sign-post'>
-        <img src='/public/assets/images/logo2.png' alt='Barb Shoe Store Logo' />
+        <img src='/assets/images/logo2.png' alt='Barb Shoe Store Logo' />
         <h1>Barb Shoe Store</h1>
         <p>Fit, Style, and Comfort for Every Foot</p>
         <div className='login-gallery'>
