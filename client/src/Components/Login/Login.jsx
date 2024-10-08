@@ -133,6 +133,11 @@ function Login() {
     setEmail(initialState.email);
     setPassword(initialState.password);
   };
+  const switchToRegisterForm = () => {
+    setHideRegisterForm('');
+    setHideLoginForm('hide');
+    setErrorMessage('');
+  };
 
   return (
     <section className='login-container'>
@@ -218,6 +223,9 @@ function Login() {
           {loading ? 'Logging in...' : 'Submit'}
         </button>
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+        <p className='switchToRegister'>
+          Have no account? <em onClick={switchToRegisterForm}>Register...</em>
+        </p>
       </form>
     </section>
   );

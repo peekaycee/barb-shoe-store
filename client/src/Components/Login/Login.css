@@ -250,6 +250,10 @@ button:nth-child(2) {
   outline: 1px solid rgba(72, 5, 5, 0.3);
   background: #333;
 }
+.switchToRegister {
+  color: #480505;
+  cursor: pointer;
+}
 
 /* Tablet breakpoint */
 @media (max-width: 768px) {
